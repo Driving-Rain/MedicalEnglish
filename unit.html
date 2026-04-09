@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>单元学习 | 医学英语构词法学习站</title>
+    <title>单元学习 | 医学英语学习站</title>
     <meta
       name="description"
       content="查看医学英语课程单元中的词根词缀总览，并在同页下方展开详细例词与构词解析。"
@@ -21,7 +21,7 @@
       <header class="site-header">
         <a class="site-brand" href="index.html">
           <span class="site-brand-mark">ME</span>
-          <span class="site-brand-text">医学英语构词法学习站</span>
+          <span class="site-brand-text">医学英语学习站</span>
         </a>
         <nav class="site-nav" aria-label="主导航">
           <a href="index.html">首页</a>
@@ -35,6 +35,11 @@
           <a href="index.html">首页</a>
           <span>/</span>
           <span id="breadcrumb-unit">单元学习</span>
+        </div>
+
+        <div class="unit-switcher-bar" aria-label="单元选择">
+          <p class="unit-switcher-label">单元</p>
+          <div class="unit-switcher-list" id="unit-switcher"></div>
         </div>
 
         <section class="page-hero page-hero-compact">
@@ -53,7 +58,6 @@
               <p class="section-kicker">Overview</p>
               <h2 class="section-title">词根词缀总览</h2>
             </div>
-            <p class="section-desc">电脑端左右排布，手机端自动上下排布。点击表格中的词条后，详细例词会直接在下方展开。</p>
           </div>
           <div class="overview-grid">
             <article class="overview-card">
@@ -102,7 +106,7 @@
               <p class="section-kicker" id="detail-type">Details</p>
               <h2 class="section-title" id="detail-title">详细例词</h2>
             </div>
-            <p class="section-desc" id="detail-summary">点击上方词条后，这里会显示词源说明和课堂例词。</p>
+            <p class="section-desc" id="detail-summary"></p>
           </div>
 
           <div class="note-grid">
@@ -126,7 +130,6 @@
         <section class="section-panel is-empty" id="unit-empty" hidden>
           <div class="empty-panel">
             <h2 class="section-title">这个单元暂时还没有公开内容</h2>
-            <p class="section-desc">可以先返回首页，或进入已完成的第一单元继续学习。</p>
             <div class="hero-actions">
               <a class="button button-primary" href="unit.html?unit=unit-1">查看第一单元</a>
               <a class="button button-secondary" href="index.html">返回首页</a>

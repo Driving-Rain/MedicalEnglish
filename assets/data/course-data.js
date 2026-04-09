@@ -1,13 +1,13 @@
 window.COURSE_DATA = {
-  "courseTitle": "医学英语构词法复习站",
+  "courseTitle": "医学英语学习站",
   "semesterLabel": "本学期医学英语",
   "units": [
     {
       "id": "unit-1",
       "label": "Unit 1",
-      "title": "第一单元：器官相关词根与常见医学词缀",
+      "title": "第一单元：器官与基础医学表达",
       "status": "ready",
-      "summary": "聚焦常见器官类词根与高频医学词缀，适合用来打基础、串联后续医学术语。",
+      "summary": "心脏、肺、纤维、肌肉、生命、眼、尿液，以及电、记录、测量等内容。",
       "roots": [
         {
           "id": "cardio-root",
@@ -17,8 +17,8 @@ window.COURSE_DATA = {
           "meaningZh": "心脏",
           "accent": "accent",
           "icon": "心",
-          "origin": "词源提示：来自希腊语 kardia，表示 heart。",
-          "why": "课堂重点：常见于心脏结构、疾病、学科与记录相关术语。",
+          "origin": "来自希腊语 kardia，表示 heart。",
+          "why": "常见于心脏结构、疾病、学科与记录相关术语。",
           "examples": [
             {
               "term": "cardiology",
@@ -58,8 +58,8 @@ window.COURSE_DATA = {
           "meaningZh": "肺",
           "accent": "secondary",
           "icon": "肺",
-          "origin": "词源提示：来自拉丁语 pulmo（属格 pulmonis），表示 lung。",
-          "why": "课堂重点：pulm/o 与 pulmon/o 都用于表达与肺、呼吸系统相关的医学意义。",
+          "origin": "来自拉丁语 pulmo（属格 pulmonis），表示 lung。",
+          "why": "pulm/o 与 pulmon/o 都用于表达与肺、呼吸系统相关的医学意义。",
           "examples": [
             {
               "term": "pulmonary",
@@ -99,8 +99,8 @@ window.COURSE_DATA = {
           "meaningZh": "纤维",
           "accent": "tertiary",
           "icon": "纤",
-          "origin": "词源提示：来自拉丁语 fibra，表示 fiber，用来指细丝样结构。",
-          "why": "课堂重点：常见于结缔组织、肌肉和神经等与纤维结构有关的术语。",
+          "origin": "来自拉丁语 fibra，表示 fiber，用来指细丝样结构。",
+          "why": "常见于结缔组织、肌肉和神经等与纤维结构有关的术语。",
           "examples": [
             {
               "term": "fibroma",
@@ -140,8 +140,8 @@ window.COURSE_DATA = {
           "meaningZh": "肌肉",
           "accent": "quaternary",
           "icon": "肌",
-          "origin": "词源提示：来自古希腊语 mys，既可表示 muscle，也与 mouse 的形象联想有关。",
-          "why": "课堂重点：常用于描述肌肉组织、肌肉疾病和相关检查。",
+          "origin": "来自古希腊语 mys，既可表示 muscle，也与 mouse 的形象联想有关。",
+          "why": "常用于描述肌肉组织、肌肉疾病和相关检查。",
           "examples": [
             {
               "term": "myalgia",
@@ -181,8 +181,8 @@ window.COURSE_DATA = {
           "meaningZh": "生命",
           "accent": "accent",
           "icon": "生",
-          "origin": "词源提示：来自古希腊语 bios，表示 life。",
-          "why": "课堂重点：常用于 biology 和 medicine 中，描述生命体、生命过程或生命形式。",
+          "origin": "来自古希腊语 bios，表示 life。",
+          "why": "常用于 biology 和 medicine 中，描述生命体、生命过程或生命形式。",
           "examples": [
             {
               "term": "biology",
@@ -222,8 +222,8 @@ window.COURSE_DATA = {
           "meaningZh": "眼睛",
           "accent": "secondary",
           "icon": "眼",
-          "origin": "词源提示：来自古希腊语 ophthalmos，表示 eye。",
-          "why": "课堂重点：常见于眼科解剖、诊断工具和病理相关术语。",
+          "origin": "来自古希腊语 ophthalmos，表示 eye。",
+          "why": "常见于眼科解剖、诊断工具和病理相关术语。",
           "examples": [
             {
               "term": "ophthalmology",
@@ -263,8 +263,8 @@ window.COURSE_DATA = {
           "meaningZh": "尿液",
           "accent": "tertiary",
           "icon": "尿",
-          "origin": "词源提示：来自拉丁语 urina，表示 urine。",
-          "why": "课堂重点：常见于泌尿系统的分析、排泄与测量术语。",
+          "origin": "来自拉丁语 urina，表示 urine。",
+          "why": "常见于泌尿系统的分析、排泄与测量术语。",
           "examples": [
             {
               "term": "urinalysis",
@@ -306,8 +306,8 @@ window.COURSE_DATA = {
           "meaningZh": "与电相关",
           "accent": "quaternary",
           "icon": "电",
-          "origin": "词源提示：来自希腊语 elektron，原义是 amber；摩擦琥珀会产生静电，后来延伸出 electricity。",
-          "why": "课堂重点：医学中常表示与电活动、电刺激、电记录相关。",
+          "origin": "来自希腊语 elektron，原义是 amber；摩擦琥珀会产生静电，后来延伸出 electricity。",
+          "why": "医学中常表示与电活动、电刺激、电记录相关。",
           "examples": [
             {
               "term": "electrocardiogram",
@@ -354,8 +354,8 @@ window.COURSE_DATA = {
           "meaningZh": "某领域专家",
           "accent": "accent",
           "icon": "专",
-          "origin": "词源提示：由 logos（study / discourse）与 -ist 组合而来。",
-          "why": "课堂重点：表示研究或专门从事某一学科的人。",
+          "origin": "由 logos（study / discourse）与 -ist 组合而来。",
+          "why": "表示研究或专门从事某一学科的人。",
           "examples": [
             {
               "term": "cardiologist",
@@ -402,8 +402,8 @@ window.COURSE_DATA = {
           "meaningZh": "专家、从业者",
           "accent": "secondary",
           "icon": "人",
-          "origin": "词源提示：课程中从拉丁语 -anus 解释为“属于…… / 与……相关”。",
-          "why": "课堂重点：常用于表示与某专业、职业或学科相关的人。",
+          "origin": "课程中从拉丁语 -anus 解释为“属于…… / 与……相关”。",
+          "why": "常用于表示与某专业、职业或学科相关的人。",
           "examples": [
             {
               "term": "physician",
@@ -443,8 +443,8 @@ window.COURSE_DATA = {
           "meaningZh": "病理状态",
           "accent": "tertiary",
           "icon": "病",
-          "origin": "词源提示：来自希腊语 -osis，表示过程或状态。",
-          "why": "课堂重点：在病理学中常表示非炎症性疾病或异常状态。",
+          "origin": "来自希腊语 -osis，表示过程或状态。",
+          "why": "在病理学中常表示非炎症性疾病或异常状态。",
           "examples": [
             {
               "term": "fibrosis",
@@ -491,8 +491,8 @@ window.COURSE_DATA = {
           "meaningZh": "疾病",
           "accent": "quaternary",
           "icon": "疾",
-          "origin": "词源提示：来自希腊语 pathos，表示 suffering 或 disease。",
-          "why": "课堂重点：常用于表示某个部位、系统或心理层面的疾病与障碍。",
+          "origin": "来自希腊语 pathos，表示 suffering 或 disease。",
+          "why": "常用于表示某个部位、系统或心理层面的疾病与障碍。",
           "examples": [
             {
               "term": "neuropathy",
@@ -539,8 +539,8 @@ window.COURSE_DATA = {
           "meaningZh": "与……有关的",
           "accent": "accent",
           "icon": "连",
-          "origin": "词源提示：来自拉丁语 -arius，表示“connected to / relating to”。",
-          "why": "课堂重点：多用来构成形容词，描述属性或关联。",
+          "origin": "来自拉丁语 -arius，表示“connected to / relating to”。",
+          "why": "多用来构成形容词，描述属性或关联。",
           "examples": [
             {
               "term": "pulmonary",
@@ -580,8 +580,8 @@ window.COURSE_DATA = {
           "meaningZh": "图、记录",
           "accent": "secondary",
           "icon": "图",
-          "origin": "词源提示：来自希腊语 gramma，表示 letter 或 written thing。",
-          "why": "课堂重点：常用于表示检查结果、图像或记录。",
+          "origin": "来自希腊语 gramma，表示 letter 或 written thing。",
+          "why": "常用于表示检查结果、图像或记录。",
           "examples": [
             {
               "term": "electrocardiogram",
@@ -621,8 +621,8 @@ window.COURSE_DATA = {
           "meaningZh": "测量相关",
           "accent": "tertiary",
           "icon": "量",
-          "origin": "词源提示：来自希腊语 metron，表示 measure。",
-          "why": "课堂重点：表示某事物可以被测量，尤其常见于诊断或评估术语。",
+          "origin": "来自希腊语 metron，表示 measure。",
+          "why": "表示某事物可以被测量，尤其常见于诊断或评估术语。",
           "examples": [
             {
               "term": "optometric",
@@ -659,9 +659,9 @@ window.COURSE_DATA = {
     {
       "id": "unit-2",
       "label": "Unit 2",
-      "title": "第二单元：感染、免疫与病理相关词根词缀",
+      "title": "第二单元：感染、免疫与病原",
       "status": "ready",
-      "summary": "聚焦感染、病理、病毒、免疫与纳米医学相关构词成分，帮助串联基础医学与现代医学术语。",
+      "summary": "前列腺、病理、细菌、病毒、脂质、免疫，以及对抗、自身、纳米、炎症、学科等内容。",
       "roots": [
         {
           "id": "prostat-root",
@@ -671,8 +671,8 @@ window.COURSE_DATA = {
           "meaningZh": "前列腺",
           "accent": "accent",
           "icon": "腺",
-          "origin": "词源提示：来自希腊语 prostatēs，原义有“保护者 / 站在前面的人”之意，也呼应其位于膀胱前方的解剖位置。",
-          "why": "课堂重点：指男性前列腺，常见于前列腺炎、切除术、疼痛以及与膀胱并发炎症的术语。",
+          "origin": "来自希腊语 prostatēs，原义有“保护者 / 站在前面的人”之意，也呼应其位于膀胱前方的解剖位置。",
+          "why": "指男性前列腺，常见于前列腺炎、切除术、疼痛以及与膀胱并发炎症的术语。",
           "examples": [
             {
               "term": "prostatitis",
@@ -712,8 +712,8 @@ window.COURSE_DATA = {
           "meaningZh": "疾病",
           "accent": "secondary",
           "icon": "病",
-          "origin": "词源提示：来自希腊语 pathos，表示 suffering 或 disease。",
-          "why": "课堂重点：用于描述各种疾病、病原体与发病机制，也常与心理、肌肉等系统词根组合。",
+          "origin": "来自希腊语 pathos，表示 suffering 或 disease。",
+          "why": "用于描述各种疾病、病原体与发病机制，也常与心理、肌肉等系统词根组合。",
           "examples": [
             {
               "term": "pathology",
@@ -760,8 +760,8 @@ window.COURSE_DATA = {
           "meaningZh": "细菌",
           "accent": "tertiary",
           "icon": "菌",
-          "origin": "词源提示：来自希腊语 bakterion，意为“小棒”，源于显微镜下细菌常呈杆状。",
-          "why": "课堂重点：常见于细菌学、杀菌/抑菌、菌血症以及细菌在不同系统中出现的术语。",
+          "origin": "来自希腊语 bakterion，意为“小棒”，源于显微镜下细菌常呈杆状。",
+          "why": "常见于细菌学、杀菌/抑菌、菌血症以及细菌在不同系统中出现的术语。",
           "examples": [
             {
               "term": "bacteriology",
@@ -808,8 +808,8 @@ window.COURSE_DATA = {
           "meaningZh": "毒；病毒",
           "accent": "quaternary",
           "icon": "毒",
-          "origin": "词源提示：来自拉丁语 virus，早期表示 poison 或 slimy liquid，后来在医学中多指病毒。",
-          "why": "课堂重点：现代医学里常表示病毒及其致病性，经常与 -al、-logy、-emia 和 anti- 等搭配。",
+          "origin": "来自拉丁语 virus，早期表示 poison 或 slimy liquid，后来在医学中多指病毒。",
+          "why": "现代医学里常表示病毒及其致病性，经常与 -al、-logy、-emia 和 anti- 等搭配。",
           "examples": [
             {
               "term": "viral",
@@ -856,8 +856,8 @@ window.COURSE_DATA = {
           "meaningZh": "脂肪",
           "accent": "accent",
           "icon": "脂",
-          "origin": "词源提示：来自希腊语 lipos，表示 fat。",
-          "why": "课堂重点：常用于描述脂类、脂肪瘤、抽脂、脂肪分解与脂质生成，也能联想到 lipid nanoparticle 等现代医学名词。",
+          "origin": "来自希腊语 lipos，表示 fat。",
+          "why": "常用于描述脂类、脂肪瘤、抽脂、脂肪分解与脂质生成，也能联想到 lipid nanoparticle 等现代医学名词。",
           "examples": [
             {
               "term": "lipid",
@@ -904,8 +904,8 @@ window.COURSE_DATA = {
           "meaningZh": "免疫；自由",
           "accent": "secondary",
           "icon": "免",
-          "origin": "词源提示：来自拉丁语 immunis，表示 exempt 或 protected，也延伸出 immunity 的含义。",
-          "why": "课堂重点：表示对疾病或外来物质的保护，常见于免疫学、免疫缺陷、免疫治疗和自身免疫相关术语。",
+          "origin": "来自拉丁语 immunis，表示 exempt 或 protected，也延伸出 immunity 的含义。",
+          "why": "表示对疾病或外来物质的保护，常见于免疫学、免疫缺陷、免疫治疗和自身免疫相关术语。",
           "examples": [
             {
               "term": "immunity",
@@ -952,8 +952,8 @@ window.COURSE_DATA = {
           "meaningZh": "感染；腐败",
           "accent": "tertiary",
           "icon": "染",
-          "origin": "词源提示：来自希腊语 sēpsis，表示 putrefaction 或 decay。",
-          "why": "课堂重点：常见于 infection、systemic inflammation 和 sepsis 相关术语，也是理解无菌与抗菌词汇的基础。",
+          "origin": "来自希腊语 sēpsis，表示 putrefaction 或 decay。",
+          "why": "常见于 infection、systemic inflammation 和 sepsis 相关术语，也是理解无菌与抗菌词汇的基础。",
           "examples": [
             {
               "term": "sepsis",
@@ -1000,8 +1000,8 @@ window.COURSE_DATA = {
           "meaningZh": "吞噬；吞食",
           "accent": "quaternary",
           "icon": "噬",
-          "origin": "词源提示：来自希腊语 phagein，表示 to eat。",
-          "why": "课堂重点：常用于描述吞噬细胞、吞噬过程，以及噬菌体、溶酶体等与吞入和降解相关的结构。",
+          "origin": "来自希腊语 phagein，表示 to eat。",
+          "why": "常用于描述吞噬细胞、吞噬过程，以及噬菌体、溶酶体等与吞入和降解相关的结构。",
           "examples": [
             {
               "term": "phagocyte",
@@ -1050,8 +1050,8 @@ window.COURSE_DATA = {
           "meaningZh": "对抗，抗……",
           "accent": "accent",
           "icon": "抗",
-          "origin": "词源提示：来自希腊语 anti-，表示 against 或 opposite。",
-          "why": "课堂重点：用于表示对立、预防或防御，尤其常见于抗菌、抗病毒、抗真菌和抗毒素术语。",
+          "origin": "来自希腊语 anti-，表示 against 或 opposite。",
+          "why": "用于表示对立、预防或防御，尤其常见于抗菌、抗病毒、抗真菌和抗毒素术语。",
           "examples": [
             {
               "term": "antibiotic",
@@ -1098,8 +1098,8 @@ window.COURSE_DATA = {
           "meaningZh": "自身，自我",
           "accent": "secondary",
           "icon": "自",
-          "origin": "词源提示：来自希腊语 autos，表示 self。",
-          "why": "课堂重点：表示来源于自身或发生在体内。补充提示：autopsy 字面可理解为“自己去看”，所以引申为尸检；autosome 字面可理解为 self-body，在遗传学中指常染色体。",
+          "origin": "来自希腊语 autos，表示 self。",
+          "why": "表示来源于自身或发生在体内。补充提示：autopsy 字面可理解为“自己去看”，所以引申为尸检；autosome 字面可理解为 self-body，在遗传学中指常染色体。",
           "examples": [
             {
               "term": "autoimmune",
@@ -1146,8 +1146,8 @@ window.COURSE_DATA = {
           "meaningZh": "纳米，极小的",
           "accent": "tertiary",
           "icon": "纳",
-          "origin": "词源提示：来自希腊语 nanos，表示 dwarf 或 very small。",
-          "why": "课堂重点：现代科学中常用来表示纳米尺度（10^-9 米）上的结构或技术，在纳米医学中尤为常见。",
+          "origin": "来自希腊语 nanos，表示 dwarf 或 very small。",
+          "why": "现代科学中常用来表示纳米尺度（10^-9 米）上的结构或技术，在纳米医学中尤为常见。",
           "examples": [
             {
               "term": "nanomedicine",
@@ -1194,8 +1194,8 @@ window.COURSE_DATA = {
           "meaningZh": "与……相关的",
           "accent": "quaternary",
           "icon": "关",
-          "origin": "词源提示：来自拉丁语 -alis，表示 pertaining to。",
-          "why": "课堂重点：是医学英语里非常常见的形容词后缀。补充提示：cervical smear 指宫颈涂片，也常叫 pap test。",
+          "origin": "来自拉丁语 -alis，表示 pertaining to。",
+          "why": "是医学英语里非常常见的形容词后缀。补充提示：cervical smear 指宫颈涂片，也常叫 pap test。",
           "examples": [
             {
               "term": "skeletal",
@@ -1242,8 +1242,8 @@ window.COURSE_DATA = {
           "meaningZh": "生成的，引起的",
           "accent": "accent",
           "icon": "生",
-          "origin": "词源提示：来自希腊语 -genēs，表示 born from 或 producing。",
-          "why": "课堂重点：表示某物的来源、诱因或生成作用。补充提示：要区分 allergic（人产生过敏反应）与 allergenic（物质具有致敏性）；carcino- 来自希腊语 karkinos，原义是 crab。",
+          "origin": "来自希腊语 -genēs，表示 born from 或 producing。",
+          "why": "表示某物的来源、诱因或生成作用。补充提示：要区分 allergic（人产生过敏反应）与 allergenic（物质具有致敏性）；carcino- 来自希腊语 karkinos，原义是 crab。",
           "examples": [
             {
               "term": "pathogenic",
@@ -1290,8 +1290,8 @@ window.COURSE_DATA = {
           "meaningZh": "炎症",
           "accent": "secondary",
           "icon": "炎",
-          "origin": "词源提示：来自希腊语 -itis，表示 inflammation。",
-          "why": "课堂重点：用于表示某个器官或组织的炎症，是临床术语里最常见的病名后缀之一。",
+          "origin": "来自希腊语 -itis，表示 inflammation。",
+          "why": "用于表示某个器官或组织的炎症，是临床术语里最常见的病名后缀之一。",
           "examples": [
             {
               "term": "tonsillitis",
@@ -1338,8 +1338,8 @@ window.COURSE_DATA = {
           "meaningZh": "学科，学说",
           "accent": "tertiary",
           "icon": "学",
-          "origin": "词源提示：来自希腊语 logos（word / reason）与 -logia（study of）。",
-          "why": "课堂重点：表示对某个领域、器官系统或生命现象的系统研究，是最常见的学科名后缀之一。",
+          "origin": "来自希腊语 logos（word / reason）与 -logia（study of）。",
+          "why": "表示对某个领域、器官系统或生命现象的系统研究，是最常见的学科名后缀之一。",
           "examples": [
             {
               "term": "biology",
@@ -1383,9 +1383,9 @@ window.COURSE_DATA = {
     {
       "id": "unit-3",
       "label": "Unit 3",
-      "title": "第三单元：神经系统与解剖方位相关词根词缀",
+      "title": "第三单元：神经系统与解剖位置",
       "status": "ready",
-      "summary": "围绕神经系统、脑与脊柱相关结构，以及疼痛、记录、切开和位置等高频构词成分展开复习。",
+      "summary": "神经、脑、颅骨、胶质、脊柱、脑膜、神经根，以及低位、侧向、周围、疼痛、记录、切开等内容。",
       "roots": [
         {
           "id": "neuro-root",
@@ -1395,8 +1395,8 @@ window.COURSE_DATA = {
           "meaningZh": "神经；神经系统",
           "accent": "accent",
           "icon": "神",
-          "origin": "词源提示：来自希腊语 neuron，表示 nerve 或 sinew。",
-          "why": "课堂重点：表示神经及神经系统，常见于神经学、神经元、神经毒素和神经功能障碍相关术语。",
+          "origin": "来自希腊语 neuron，表示 nerve 或 sinew。",
+          "why": "表示神经及神经系统，常见于神经学、神经元、神经毒素和神经功能障碍相关术语。",
           "examples": [
             {
               "term": "neurology",
@@ -1436,8 +1436,8 @@ window.COURSE_DATA = {
           "meaningZh": "大脑",
           "accent": "secondary",
           "icon": "脑",
-          "origin": "词源提示：来自拉丁语 cerebrum，表示 brain。",
-          "why": "课堂重点：多指与大脑尤其是 cerebrum 相关的结构和功能，常见于脑血管、脑脊髓和思维活动相关术语。",
+          "origin": "来自拉丁语 cerebrum，表示 brain。",
+          "why": "多指与大脑尤其是 cerebrum 相关的结构和功能，常见于脑血管、脑脊髓和思维活动相关术语。",
           "examples": [
             {
               "term": "cerebrospinal",
@@ -1477,8 +1477,8 @@ window.COURSE_DATA = {
           "meaningZh": "脑",
           "accent": "tertiary",
           "icon": "脑",
-          "origin": "词源提示：来自希腊语 enkephalos，其中 en 表示 in，kephale 表示 head，整体有“头内之物”的意思。",
-          "why": "课堂重点：常用于描述与大脑有关的疾病、检查和手术。",
+          "origin": "来自希腊语 enkephalos，其中 en 表示 in，kephale 表示 head，整体有“头内之物”的意思。",
+          "why": "常用于描述与大脑有关的疾病、检查和手术。",
           "examples": [
             {
               "term": "encephalitis",
@@ -1518,8 +1518,8 @@ window.COURSE_DATA = {
           "meaningZh": "颅骨",
           "accent": "quaternary",
           "icon": "颅",
-          "origin": "词源提示：来自希腊语 kranion，表示 skull。",
-          "why": "课堂重点：指包裹并保护大脑的颅骨结构，常见于切开、修复和学科名称中。",
+          "origin": "来自希腊语 kranion，表示 skull。",
+          "why": "指包裹并保护大脑的颅骨结构，常见于切开、修复和学科名称中。",
           "examples": [
             {
               "term": "craniotomy",
@@ -1559,8 +1559,8 @@ window.COURSE_DATA = {
           "meaningZh": "胶质",
           "accent": "accent",
           "icon": "胶",
-          "origin": "词源提示：来自希腊语 glia，表示 glue。",
-          "why": "课堂重点：常用于表示 neuroglia，即支持和保护神经元的胶质组织。",
+          "origin": "来自希腊语 glia，表示 glue。",
+          "why": "常用于表示 neuroglia，即支持和保护神经元的胶质组织。",
           "examples": [
             {
               "term": "glioma",
@@ -1593,8 +1593,8 @@ window.COURSE_DATA = {
           "meaningZh": "脊柱；背",
           "accent": "secondary",
           "icon": "脊",
-          "origin": "词源提示：来自拉丁语 spina，表示 spine 或 thorn。",
-          "why": "课堂重点：常表示脊柱或脊髓相关结构，也可用来构成描述位置和检查工具的术语。",
+          "origin": "来自拉丁语 spina，表示 spine 或 thorn。",
+          "why": "常表示脊柱或脊髓相关结构，也可用来构成描述位置和检查工具的术语。",
           "examples": [
             {
               "term": "spinal",
@@ -1634,8 +1634,8 @@ window.COURSE_DATA = {
           "meaningZh": "膜；脑膜",
           "accent": "tertiary",
           "icon": "膜",
-          "origin": "词源提示：来自希腊语 meninx（复数 meninges），表示 membrane。",
-          "why": "课堂重点：常用于表示包裹脑和脊髓的保护膜，相关术语多见于炎症、膨出和肿瘤。",
+          "origin": "来自希腊语 meninx（复数 meninges），表示 membrane。",
+          "why": "常用于表示包裹脑和脊髓的保护膜，相关术语多见于炎症、膨出和肿瘤。",
           "examples": [
             {
               "term": "meningitis",
@@ -1675,8 +1675,8 @@ window.COURSE_DATA = {
           "meaningZh": "根",
           "accent": "quaternary",
           "icon": "根",
-          "origin": "词源提示：来自拉丁语 radix，表示 root。",
-          "why": "课堂重点：可用于表示神经根或解剖中的根状结构，也延伸到“根除”一类词义。",
+          "origin": "来自拉丁语 radix，表示 root。",
+          "why": "可用于表示神经根或解剖中的根状结构，也延伸到“根除”一类词义。",
           "examples": [
             {
               "term": "eradicate",
@@ -1711,8 +1711,8 @@ window.COURSE_DATA = {
           "meaningZh": "低于；不足",
           "accent": "accent",
           "icon": "低",
-          "origin": "词源提示：来自希腊语 hypo，表示 under 或 beneath。",
-          "why": "课堂重点：表示缺乏、低于正常水平，或位于某物下方。",
+          "origin": "来自希腊语 hypo，表示 under 或 beneath。",
+          "why": "表示缺乏、低于正常水平，或位于某物下方。",
           "examples": [
             {
               "term": "hypoglycemia",
@@ -1752,8 +1752,8 @@ window.COURSE_DATA = {
           "meaningZh": "侧；侧面",
           "accent": "secondary",
           "icon": "侧",
-          "origin": "词源提示：来自拉丁语 lateralis，表示 side。",
-          "why": "课堂重点：多用于表示身体或器官结构的侧面、方向和位置。",
+          "origin": "来自拉丁语 lateralis，表示 side。",
+          "why": "多用于表示身体或器官结构的侧面、方向和位置。",
           "examples": [
             {
               "term": "lateral",
@@ -1793,8 +1793,8 @@ window.COURSE_DATA = {
           "meaningZh": "围绕；附近",
           "accent": "tertiary",
           "icon": "周",
-          "origin": "词源提示：来自希腊语 peri，表示 around。",
-          "why": "课堂重点：用于表示某结构周围、邻近或环绕的关系。",
+          "origin": "来自希腊语 peri，表示 around。",
+          "why": "用于表示某结构周围、邻近或环绕的关系。",
           "examples": [
             {
               "term": "pericardium",
@@ -1834,8 +1834,8 @@ window.COURSE_DATA = {
           "meaningZh": "疼痛",
           "accent": "quaternary",
           "icon": "痛",
-          "origin": "词源提示：来自希腊语 algos，表示 pain。",
-          "why": "课堂重点：表示身体某一部位的疼痛或疼痛状态。",
+          "origin": "来自希腊语 algos，表示 pain。",
+          "why": "表示身体某一部位的疼痛或疼痛状态。",
           "examples": [
             {
               "term": "neuralgia",
@@ -1875,8 +1875,8 @@ window.COURSE_DATA = {
           "meaningZh": "病理相关的",
           "accent": "accent",
           "icon": "病",
-          "origin": "词源提示：来自希腊语 pathos，表示 suffering 或 disease。",
-          "why": "课堂重点：表示与疾病、病理状态或患病情况有关的形容词意义。",
+          "origin": "来自希腊语 pathos，表示 suffering 或 disease。",
+          "why": "表示与疾病、病理状态或患病情况有关的形容词意义。",
           "examples": [
             {
               "term": "neuropathic",
@@ -1916,8 +1916,8 @@ window.COURSE_DATA = {
           "meaningZh": "与……有关的",
           "accent": "secondary",
           "icon": "性",
-          "origin": "词源提示：来自希腊语 -tikos，表示 pertaining to 或 of the nature of。",
-          "why": "课堂重点：常用于构成形容词，表示某种属性、状态或关联。",
+          "origin": "来自希腊语 -tikos，表示 pertaining to 或 of the nature of。",
+          "why": "常用于构成形容词，表示某种属性、状态或关联。",
           "examples": [
             {
               "term": "neurotic",
@@ -1957,8 +1957,8 @@ window.COURSE_DATA = {
           "meaningZh": "记录；成像",
           "accent": "tertiary",
           "icon": "记",
-          "origin": "词源提示：来自希腊语 graphia，表示 writing 或 description。",
-          "why": "课堂重点：表示记录、书写或通过技术手段形成图像的过程。",
+          "origin": "来自希腊语 graphia，表示 writing 或 description。",
+          "why": "表示记录、书写或通过技术手段形成图像的过程。",
           "examples": [
             {
               "term": "radiography",
@@ -1998,8 +1998,8 @@ window.COURSE_DATA = {
           "meaningZh": "切开术",
           "accent": "quaternary",
           "icon": "切",
-          "origin": "词源提示：来自希腊语 tome，表示 cutting。",
-          "why": "课堂重点：用于表示外科切开某器官或组织的手术。",
+          "origin": "来自希腊语 tome，表示 cutting。",
+          "why": "用于表示外科切开某器官或组织的手术。",
           "examples": [
             {
               "term": "tracheotomy",
@@ -2039,8 +2039,8 @@ window.COURSE_DATA = {
           "meaningZh": "学科相关的",
           "accent": "accent",
           "icon": "学",
-          "origin": "词源提示：来自希腊语 -logikos，表示与 speaking、reasoning 或某学科有关。",
-          "why": "课堂重点：用于构成与某门学科、研究领域或理论相关的形容词。",
+          "origin": "来自希腊语 -logikos，表示与 speaking、reasoning 或某学科有关。",
+          "why": "用于构成与某门学科、研究领域或理论相关的形容词。",
           "examples": [
             {
               "term": "biological",

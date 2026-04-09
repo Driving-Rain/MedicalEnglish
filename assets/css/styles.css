@@ -407,6 +407,63 @@ svg {
   gap: 8px;
 }
 
+.unit-switcher-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-soft);
+}
+
+.unit-switcher-label {
+  flex: none;
+  margin: 0;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+
+.unit-switcher-list {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.unit-switcher-list::-webkit-scrollbar {
+  display: none;
+}
+
+.unit-switcher-chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 2px solid var(--soft-border);
+  border-radius: var(--radius-full);
+  background: rgba(248, 250, 252, 0.96);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.unit-switcher-chip:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-hard);
+  transform: translate(-2px, -2px);
+}
+
+.unit-switcher-chip.is-current {
+  border-color: var(--border);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: var(--shadow-hard);
+}
+
 .meta-chip {
   display: inline-flex;
   align-items: center;
@@ -527,7 +584,7 @@ tbody tr + tr {
 }
 
 .example-list-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .example-card {
@@ -677,6 +734,7 @@ tbody tr + tr {
   .unit-grid,
   .overview-grid,
   .note-grid,
+  .example-list-grid,
   .example-grid {
     grid-template-columns: 1fr;
   }

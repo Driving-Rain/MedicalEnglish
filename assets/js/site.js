@@ -85,12 +85,15 @@
     const allItems = getUnitMorphemes(unit);
     let selectedId = query.get("item") || (allItems[0] ? allItems[0].id : "");
 
+    renderUnitSwitcher(document.getElementById("unit-switcher"), unit.id, buildUnitUrl);
     document.getElementById("breadcrumb-unit").textContent = unit.title;
     document.getElementById("unit-label").textContent = unit.label;
     document.getElementById("unit-title").textContent = unit.title;
     document.getElementById("unit-summary").textContent = unit.summary;
     document.getElementById("flashcards-link").href = buildFlashcardsUrl(unit.id);
-    document.title = unit.title + " | 医学英语构词法学习站";
+    document.title = unit.title + " | 医学英语学习站";
+    document.querySelector('.site-nav a[href^="unit.html"]').href = buildUnitUrl(unit.id);
+    document.querySelector('.site-nav a[href^="flashcards.html"]').href = buildFlashcardsUrl(unit.id);
 
     if (unit.status !== "ready" || !allItems.length) {
       unitEmpty.hidden = false;
@@ -156,11 +159,14 @@
     const shell = document.getElementById("flashcard-shell");
     const empty = document.getElementById("flashcard-empty");
 
+    renderUnitSwitcher(document.getElementById("unit-switcher"), unit.id, buildFlashcardsUrl);
     document.getElementById("flashcard-breadcrumb").textContent = unit.title + " 抽认卡";
     document.getElementById("flashcard-unit-label").textContent = unit.label;
     document.getElementById("flashcard-page-title").textContent = unit.title + " 抽认卡";
     document.getElementById("flashcard-unit-link").href = buildUnitUrl(unit.id);
-    document.title = unit.title + " 抽认卡 | 医学英语构词法学习站";
+    document.title = unit.title + " 抽认卡 | 医学英语学习站";
+    document.querySelector('.site-nav a[href^="unit.html"]').href = buildUnitUrl(unit.id);
+    document.querySelector('.site-nav a[href^="flashcards.html"]').href = buildFlashcardsUrl(unit.id);
 
     if (!pool.length) {
       shell.hidden = true;
@@ -365,6 +371,26 @@
     node.classList.toggle("is-empty", !text);
   }
 
+  function renderUnitSwitcher(container, currentUnitId, hrefBuilder) {
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = getReadyUnits()
+      .map((unit) => {
+        return [
+          '<a class="unit-switcher-chip',
+          unit.id === currentUnitId ? " is-current" : "",
+          '" href="',
+          hrefBuilder(unit.id),
+          '">',
+          unit.label,
+          "</a>"
+        ].join("");
+      })
+      .join("");
+  }
+
   function pickRandomCard(pool, currentKey) {
     if (pool.length === 1) {
       return pool[0].key;
@@ -389,8 +415,12 @@
   }
 
   function getReadyUnitId() {
-    const readyUnit = data.units.find((unit) => unit.status === "ready");
+    const readyUnit = getReadyUnits()[0];
     return readyUnit ? readyUnit.id : data.units[0].id;
+  }
+
+  function getReadyUnits() {
+    return data.units.filter((unit) => unit.status === "ready");
   }
 
   function buildUnitUrl(unitId, itemId) {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>抽认卡 | 医学英语构词法学习站</title>
+    <title>抽认卡 | 医学英语学习站</title>
     <meta
       name="description"
       content="使用医学英语术语抽认卡模式进行快速复习，先猜意思和构词，再显示答案。"
@@ -21,7 +21,7 @@
       <header class="site-header">
         <a class="site-brand" href="index.html">
           <span class="site-brand-mark">ME</span>
-          <span class="site-brand-text">医学英语构词法学习站</span>
+          <span class="site-brand-text">医学英语学习站</span>
         </a>
         <nav class="site-nav" aria-label="主导航">
           <a href="index.html">首页</a>
@@ -37,10 +37,15 @@
           <span id="flashcard-breadcrumb">抽认卡</span>
         </div>
 
+        <div class="unit-switcher-bar" aria-label="单元选择">
+          <p class="unit-switcher-label">单元</p>
+          <div class="unit-switcher-list" id="unit-switcher"></div>
+        </div>
+
         <section class="page-hero page-hero-compact">
           <p class="page-kicker" id="flashcard-unit-label">Flashcards</p>
           <h1 class="page-title" id="flashcard-page-title">抽认卡练习</h1>
-          <p class="page-lead">先看术语和音标，自己回忆中文释义与构词解析，再点击“显示答案”。</p>
+          <p class="page-lead">随机查看术语、构词解析与中文释义。</p>
           <div class="hero-actions">
             <a class="button button-primary" id="flashcard-unit-link" href="unit.html?unit=unit-1">返回单元页</a>
             <a class="button button-secondary" href="index.html">返回首页</a>
@@ -83,7 +88,6 @@
 
           <div class="empty-panel" id="flashcard-empty" hidden>
             <h2 class="section-title">这个单元暂时没有可练习的卡片</h2>
-            <p class="section-desc">请先进入已完成内容的单元学习页。</p>
           </div>
         </section>
       </main>

@@ -6,12 +6,12 @@
     <title>单元学习 | 医学英语构词法学习站</title>
     <meta
       name="description"
-      content="查看医学英语课程单元中的词根词缀总览，并进入具体词条详情页。"
+      content="查看医学英语课程单元中的词根词缀总览，并在同页下方展开详细例词与构词解析。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Noto+Serif+SC:wght@700;800&amp;family=Outfit:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -50,45 +50,77 @@
         <section class="section-panel" id="unit-content">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Roots</p>
-              <h2 class="section-title">词根总览</h2>
+              <p class="section-kicker">Overview</p>
+              <h2 class="section-title">词根词缀总览</h2>
             </div>
-            <p class="section-desc">点击任意词根可进入详情页，查看词源说明、例词、音标和构词解析。</p>
+            <p class="section-desc">电脑端左右排布，手机端自动上下排布。点击表格中的词条后，详细例词会直接在下方展开。</p>
           </div>
-          <div class="table-shell">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">词根</th>
-                  <th scope="col">英文含义</th>
-                  <th scope="col">中文含义</th>
-                </tr>
-              </thead>
-              <tbody id="roots-body"></tbody>
-            </table>
+          <div class="overview-grid">
+            <article class="overview-card">
+              <div class="overview-card-head">
+                <p class="section-kicker">Roots</p>
+                <h3 class="card-title">词根</h3>
+              </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">词根</th>
+                      <th scope="col">英文含义</th>
+                      <th scope="col">中文含义</th>
+                    </tr>
+                  </thead>
+                  <tbody id="roots-body"></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="overview-card" id="affix-section">
+              <div class="overview-card-head">
+                <p class="section-kicker">Affixes</p>
+                <h3 class="card-title">词缀</h3>
+              </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">词缀</th>
+                      <th scope="col">英文含义</th>
+                      <th scope="col">中文含义</th>
+                    </tr>
+                  </thead>
+                  <tbody id="affixes-body"></tbody>
+                </table>
+              </div>
+            </article>
           </div>
         </section>
 
-        <section class="section-panel" id="affix-section">
+        <section class="section-panel" id="detail-panel" hidden>
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Affixes</p>
-              <h2 class="section-title">词缀总览</h2>
+              <p class="section-kicker" id="detail-type">Details</p>
+              <h2 class="section-title" id="detail-title">详细例词</h2>
             </div>
-            <p class="section-desc">点击任意词缀进入独立详情页，集中查看该词缀相关术语与构词方法。</p>
+            <p class="section-desc" id="detail-summary">点击上方词条后，这里会显示词源说明和课堂例词。</p>
           </div>
-          <div class="table-shell">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">词缀</th>
-                  <th scope="col">英文含义</th>
-                  <th scope="col">中文含义</th>
-                </tr>
-              </thead>
-              <tbody id="affixes-body"></tbody>
-            </table>
+
+          <div class="note-grid">
+            <article class="note-card">
+              <h3 class="card-title">词源</h3>
+              <p class="card-copy" id="detail-origin"></p>
+            </article>
+            <article class="note-card">
+              <h3 class="card-title">课堂提示</h3>
+              <p class="card-copy" id="detail-why"></p>
+            </article>
           </div>
+
+          <div class="detail-examples-head">
+            <p class="section-kicker">Examples</p>
+            <h3 class="card-title">课堂例词</h3>
+          </div>
+          <div class="example-list example-list-grid" id="example-list"></div>
         </section>
 
         <section class="section-panel is-empty" id="unit-empty" hidden>

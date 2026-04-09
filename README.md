@@ -13,11 +13,10 @@ python3 -m http.server 8000
 ## 项目结构
 
 - `index.html`：首页，展示课程简介与单元入口
-- `unit.html`：单元总览页
-- `morpheme.html`：词根/词缀详情页
+- `unit.html`：单元总览页，点击词条后在同页下方展开详细例词
 - `flashcards.html`：抽认卡练习页
 - `assets/css/styles.css`：设计系统与页面样式
-- `assets/js/site.js`：多页面渲染、抽认卡与发音播放逻辑
+- `assets/js/site.js`：多页面渲染、单元页联动详情、抽认卡与发音播放逻辑
 - `assets/data/course-data.js`：课程内容数据源
 - `assets/audio/terms/`：可选的术语音频目录，后续如果有自备录音可直接接入
 

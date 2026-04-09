@@ -19,10 +19,6 @@
     initUnitPage();
   }
 
-  if (page === "morpheme") {
-    initMorphemePage();
-  }
-
   if (page === "flashcards") {
     initFlashcardsPage();
   }
@@ -84,7 +80,10 @@
     const affixesBody = document.getElementById("affixes-body");
     const unitEmpty = document.getElementById("unit-empty");
     const unitContent = document.getElementById("unit-content");
+    const detailPanel = document.getElementById("detail-panel");
     const affixSection = document.getElementById("affix-section");
+    const allItems = getUnitMorphemes(unit);
+    let selectedId = query.get("item") || (allItems[0] ? allItems[0].id : "");
 
     document.getElementById("breadcrumb-unit").textContent = unit.title;
     document.getElementById("unit-label").textContent = unit.label;
@@ -93,49 +92,65 @@
     document.getElementById("flashcards-link").href = buildFlashcardsUrl(unit.id);
     document.title = unit.title + " | 医学英语构词法学习站";
 
-    if (unit.status !== "ready" || !getUnitMorphemes(unit).length) {
+    if (unit.status !== "ready" || !allItems.length) {
       unitEmpty.hidden = false;
       unitContent.hidden = true;
+      detailPanel.hidden = true;
       affixSection.hidden = true;
       return;
     }
 
-    rootsBody.innerHTML = buildOverviewRows(unit.roots, unit.id);
-    affixesBody.innerHTML = buildOverviewRows(unit.affixes, unit.id);
-  }
+    renderOverviewTables();
+    renderDetail(selectedId, false);
 
-  function initMorphemePage() {
-    const unit = getCurrentUnit();
-    const morpheme = getCurrentMorpheme(unit);
-    const detailContent = document.getElementById("detail-content");
-    const detailEmpty = document.getElementById("detail-empty");
+    rootsBody.addEventListener("click", handleOverviewClick);
+    affixesBody.addEventListener("click", handleOverviewClick);
 
-    document.getElementById("detail-unit-link").href = buildUnitUrl(unit.id);
-    document.getElementById("detail-unit-link").textContent = unit.title;
-    document.getElementById("detail-back-link").href = buildUnitUrl(unit.id);
-    document.getElementById("detail-flashcard-link").href = buildFlashcardsUrl(unit.id);
-    document.getElementById("detail-empty-back").href = buildUnitUrl(unit.id);
+    function handleOverviewClick(event) {
+      const button = event.target.closest("[data-select-item]");
 
-    if (!morpheme) {
-      detailContent.hidden = true;
-      detailEmpty.hidden = false;
-      return;
+      if (!button) {
+        return;
+      }
+
+      selectedId = button.dataset.selectItem;
+      renderOverviewTables();
+      renderDetail(selectedId, true);
+      window.history.replaceState({}, "", buildUnitUrl(unit.id, selectedId));
     }
 
-    document.getElementById("detail-type").textContent = morpheme.type === "root" ? "词根" : "词缀";
-    document.getElementById("detail-label").textContent = morpheme.label;
-    document.getElementById("detail-meaning").textContent = morpheme.meaningEn + " / " + morpheme.meaningZh;
-    document.getElementById("detail-crumb-label").textContent = morpheme.label;
-    document.getElementById("detail-origin").textContent = morpheme.origin;
-    document.getElementById("detail-why").textContent = morpheme.why;
-    document.getElementById("example-list").innerHTML = buildExampleCards(morpheme.examples);
-    document.title = morpheme.label + " | 医学英语构词法学习站";
+    function renderOverviewTables() {
+      rootsBody.innerHTML = buildOverviewRows(unit.roots, selectedId);
+      affixesBody.innerHTML = buildOverviewRows(unit.affixes, selectedId);
+    }
+
+    function renderDetail(itemId, shouldScroll) {
+      const item = allItems.find((entry) => entry.id === itemId) || allItems[0];
+
+      if (!item) {
+        detailPanel.hidden = true;
+        return;
+      }
+
+      detailPanel.hidden = false;
+      document.getElementById("detail-type").textContent = item.type === "root" ? "Root" : "Affix";
+      document.getElementById("detail-title").textContent = item.label;
+      document.getElementById("detail-summary").textContent = item.meaningEn + " / " + item.meaningZh;
+      document.getElementById("detail-origin").textContent = item.origin;
+      document.getElementById("detail-why").textContent = item.why;
+      document.getElementById("example-list").innerHTML = buildExampleCards(item.examples);
+
+      if (shouldScroll) {
+        detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   }
 
   function initFlashcardsPage() {
     const unit = getCurrentUnit();
     const pool = buildFlashcardPool(unit);
-    const answer = document.getElementById("flashcard-answer");
+    const breakdownNode = document.getElementById("flashcard-breakdown");
+    const meaningNode = document.getElementById("flashcard-meaning");
     const revealButton = document.getElementById("reveal-answer");
     const nextButton = document.getElementById("next-card");
     const shell = document.getElementById("flashcard-shell");
@@ -175,9 +190,8 @@
       document.getElementById("flashcard-count").textContent = "共 " + pool.length + " 张术语卡片";
       document.getElementById("flashcard-term").textContent = card.term;
       document.getElementById("flashcard-ipa").textContent = card.ipa;
-      document.getElementById("flashcard-breakdown").textContent = card.breakdown;
-      document.getElementById("flashcard-meaning").textContent = card.meaning;
-      answer.hidden = !revealed;
+      setAnswerText(breakdownNode, revealed ? card.breakdown : "");
+      setAnswerText(meaningNode, revealed ? card.meaning : "");
       revealButton.textContent = revealed ? "隐藏答案" : "显示答案";
     }
   }
@@ -194,11 +208,11 @@
   }
 
   function playPronunciation(button) {
-    const text = button.dataset.audioText;
-
     if (!("speechSynthesis" in window)) {
       return;
     }
+
+    const text = button.dataset.audioText;
 
     if (activeAudioButton === button) {
       window.speechSynthesis.cancel();
@@ -246,20 +260,26 @@
     );
   }
 
-  function buildOverviewRows(items, unitId) {
+  function buildOverviewRows(items, selectedId) {
     if (!items.length) {
       return '<tr><td colspan="3" class="table-empty">本单元内容整理中</td></tr>';
     }
 
     return items
       .map((item) => {
+        const isSelected = item.id === selectedId;
+
         return [
           "<tr>",
-          '<td><a class="table-link" href="',
-          buildMorphemeUrl(unitId, item.id),
+          '<td><button class="table-select',
+          isSelected ? " is-selected" : "",
+          '" type="button" data-select-item="',
+          item.id,
+          '" aria-pressed="',
+          isSelected ? "true" : "false",
           '">',
           item.label,
-          "</a></td>",
+          "</button></td>",
           "<td>",
           item.meaningEn,
           "</td>",
@@ -339,6 +359,12 @@
     });
   }
 
+  function setAnswerText(node, text) {
+    const content = text || " ";
+    node.textContent = content;
+    node.classList.toggle("is-empty", !text);
+  }
+
   function pickRandomCard(pool, currentKey) {
     if (pool.length === 1) {
       return pool[0].key;
@@ -354,11 +380,6 @@
     return data.units.find((unit) => unit.id === requested) || data.units.find((unit) => unit.status === "ready") || data.units[0];
   }
 
-  function getCurrentMorpheme(unit) {
-    const requested = query.get("item");
-    return getUnitMorphemes(unit).find((item) => item.id === requested) || null;
-  }
-
   function getUnitMorphemes(unit) {
     return [...(unit.roots || []), ...(unit.affixes || [])];
   }
@@ -372,12 +393,15 @@
     return readyUnit ? readyUnit.id : data.units[0].id;
   }
 
-  function buildUnitUrl(unitId) {
-    return "unit.html?unit=" + encodeURIComponent(unitId);
-  }
+  function buildUnitUrl(unitId, itemId) {
+    const params = new URLSearchParams();
+    params.set("unit", unitId);
 
-  function buildMorphemeUrl(unitId, itemId) {
-    return "morpheme.html?unit=" + encodeURIComponent(unitId) + "&item=" + encodeURIComponent(itemId);
+    if (itemId) {
+      params.set("item", itemId);
+    }
+
+    return "unit.html?" + params.toString();
   }
 
   function buildFlashcardsUrl(unitId) {

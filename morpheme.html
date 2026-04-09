@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>词根词缀详情 | 医学英语构词法学习站</title>
+    <meta
+      name="description"
+      content="查看医学英语词根词缀的词源说明、课堂提示、例词、音标、构词解析与中文释义。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="morpheme">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="index.html">
+          <span class="site-brand-mark">ME</span>
+          <span class="site-brand-text">医学英语构词法学习站</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="unit.html?unit=unit-1">单元学习</a>
+          <a href="flashcards.html?unit=unit-1">抽认卡</a>
+        </nav>
+      </header>
+
+      <main class="page-main">
+        <div class="breadcrumb" id="detail-breadcrumb">
+          <a href="index.html">首页</a>
+          <span>/</span>
+          <a id="detail-unit-link" href="unit.html?unit=unit-1">单元学习</a>
+          <span>/</span>
+          <span id="detail-crumb-label">词条详情</span>
+        </div>
+
+        <section class="page-hero page-hero-compact">
+          <p class="page-kicker" id="detail-type">词根</p>
+          <h1 class="page-title" id="detail-label">加载中</h1>
+          <p class="page-lead" id="detail-meaning">加载中</p>
+          <div class="hero-actions">
+            <a class="button button-primary" id="detail-back-link" href="unit.html?unit=unit-1">返回单元总览</a>
+            <a class="button button-secondary" id="detail-flashcard-link" href="flashcards.html?unit=unit-1">进入抽认卡</a>
+          </div>
+        </section>
+
+        <section class="section-panel" id="detail-content">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Notes</p>
+              <h2 class="section-title">构词说明</h2>
+            </div>
+            <p class="section-desc">先理解词源与课堂提示，再结合例词去记忆构词方式。</p>
+          </div>
+          <div class="note-grid">
+            <article class="note-card">
+              <h3 class="card-title">词源</h3>
+              <p class="card-copy" id="detail-origin"></p>
+            </article>
+            <article class="note-card">
+              <h3 class="card-title">课堂提示</h3>
+              <p class="card-copy" id="detail-why"></p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Examples</p>
+              <h2 class="section-title">课堂例词</h2>
+            </div>
+            <p class="section-desc">点击扬声器即可播放术语发音。</p>
+          </div>
+          <div class="example-list" id="example-list"></div>
+        </section>
+
+        <section class="section-panel is-empty" id="detail-empty" hidden>
+          <div class="empty-panel">
+            <h2 class="section-title">没有找到这个词条</h2>
+            <p class="section-desc">请返回单元页，从总览表重新选择词根或词缀。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" id="detail-empty-back" href="unit.html?unit=unit-1">返回单元页</a>
+              <a class="button button-secondary" href="index.html">回到首页</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/data/course-data.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

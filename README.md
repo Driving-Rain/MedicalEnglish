@@ -1,6 +1,6 @@
 # MedicalEnglish
 
-医学英语课程构词法复习网站，当前已完成第一单元，第二到第八单元已预留结构。
+医学英语课程构词法学习网站，当前已完成第一单元，第二到第八单元已预留结构。
 
 ## 本地预览
 
@@ -12,9 +12,12 @@ python3 -m http.server 8000
 
 ## 项目结构
 
-- `index.html`：页面入口
+- `index.html`：首页，展示课程简介与单元入口
+- `unit.html`：单元总览页
+- `morpheme.html`：词根/词缀详情页
+- `flashcards.html`：抽认卡练习页
 - `assets/css/styles.css`：设计系统与页面样式
-- `assets/js/app.js`：页面渲染、筛选、抽认卡与音频播放逻辑
+- `assets/js/site.js`：多页面渲染、抽认卡与发音播放逻辑
 - `assets/data/course-data.js`：课程内容数据源
 - `assets/audio/terms/`：可选的术语音频目录，后续如果有自备录音可直接接入
 

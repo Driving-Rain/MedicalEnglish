@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>医学英语构词法复习站</title>
+    <title>医学英语构词法学习站</title>
     <meta
       name="description"
-      content="汇总医学英语课程中的词根、词缀、构词解析、音标、中文释义与音频，方便随时复习。"
+      content="公开分享的医学英语构词法学习网站，收录词根词缀、构词解析、音标、中文释义与发音。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,232 +16,47 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-  <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="hero-confetti hero-confetti-a" aria-hidden="true"></div>
-        <div class="hero-confetti hero-confetti-b" aria-hidden="true"></div>
-        <div class="hero-confetti hero-confetti-c" aria-hidden="true"></div>
-
-        <div class="hero-topline">
-          <span class="eyebrow">Medical English Morphology</span>
-          <a class="ghost-link" href="#study">开始复习</a>
-        </div>
-
-        <div class="hero-grid">
-          <section class="hero-copy">
-            <div class="hero-badge">构词法总复习站</div>
-            <h1>把课上的词根词缀，整理成一座随时可翻的医学英语贴纸书。</h1>
-            <p class="hero-text">
-              这里会持续汇总 8 个单元的课堂内容。每个词条都带有构词解析、音标、中文释义和点击即播的英文发音，方便你在手机或电脑上快速复习。
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#study">
-                进入卡片库
-                <span class="button-icon" aria-hidden="true">→</span>
-              </a>
-              <a class="button button-secondary" href="#review-lab">抽认卡模式</a>
-            </div>
-
-            <div class="hero-stats" id="hero-stats" aria-label="课程概览">
-              <article class="stat-card">
-                <span class="stat-label">单元数</span>
-                <strong class="stat-value" data-stat="units">8</strong>
-              </article>
-              <article class="stat-card">
-                <span class="stat-label">已录入词根词缀</span>
-                <strong class="stat-value" data-stat="morphemes">0</strong>
-              </article>
-              <article class="stat-card">
-                <span class="stat-label">术语例词</span>
-                <strong class="stat-value" data-stat="examples">0</strong>
-              </article>
-            </div>
-          </section>
-
-          <aside class="hero-panel">
-            <div class="panel-header">
-              <span class="panel-kicker">快速定位</span>
-              <h2>按单元、词根词缀或术语搜索</h2>
-            </div>
-
-            <label class="search-field" for="search-input">
-              <span class="search-label">搜索术语 / 中文 / 构词</span>
-              <input
-                id="search-input"
-                type="search"
-                placeholder="例如 cardiology / 心电图 / -pathy"
-                autocomplete="off"
-              />
-            </label>
-
-            <div class="unit-tabs-wrap">
-              <div class="section-mini-title">课程单元</div>
-              <div class="unit-tabs" id="unit-tabs" role="tablist" aria-label="课程单元切换"></div>
-            </div>
-
-            <div class="hero-note">
-              <strong>当前录入：</strong>
-              第一单元已完成，第二到第八单元已预留结构，后续只需补充数据即可自动渲染。
-            </div>
-          </aside>
-        </div>
+  <body data-page="home">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="index.html">
+          <span class="site-brand-mark">ME</span>
+          <span class="site-brand-text">医学英语构词法学习站</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a class="is-current" href="index.html">首页</a>
+          <a href="unit.html?unit=unit-1">单元学习</a>
+          <a href="flashcards.html?unit=unit-1">抽认卡</a>
+        </nav>
       </header>
 
-      <main>
-        <section class="overview-board section-card" id="unit-overview" aria-labelledby="overview-title">
-          <div class="section-heading">
-            <div>
-              <span class="section-tag">Overview</span>
-              <h2 id="overview-title">单元总览</h2>
-            </div>
-            <p id="overview-description">
-              先从本单元的词根与词缀表入手，再往下点开卡片查看详细例词。
-            </p>
-          </div>
-
-          <div class="overview-meta" id="overview-meta"></div>
-
-          <div class="summary-grid">
-            <article class="summary-table-card">
-              <div class="table-card-heading">
-                <h3>词根 Roots</h3>
-                <span class="table-card-count" id="roots-count">0</span>
-              </div>
-              <div class="table-shell">
-                <table>
-                  <thead>
-                    <tr>
-                      <th scope="col">词根</th>
-                      <th scope="col">含义</th>
-                    </tr>
-                  </thead>
-                  <tbody id="roots-summary-body"></tbody>
-                </table>
-              </div>
-            </article>
-
-            <article class="summary-table-card">
-              <div class="table-card-heading">
-                <h3>词缀 Affixes</h3>
-                <span class="table-card-count" id="affixes-count">0</span>
-              </div>
-              <div class="table-shell">
-                <table>
-                  <thead>
-                    <tr>
-                      <th scope="col">词缀</th>
-                      <th scope="col">含义</th>
-                    </tr>
-                  </thead>
-                  <tbody id="affixes-summary-body"></tbody>
-                </table>
-              </div>
-            </article>
+      <main class="page-main">
+        <section class="page-hero">
+          <p class="page-kicker">Medical English</p>
+          <h1 class="page-title">面向公开分享的医学英语构词法学习网站</h1>
+          <p class="page-lead">
+            这里汇总本学期医学英语课程中的词根、词缀与课堂例词。每个词条都配有构词解析、音标、中文释义和点击发音，方便随时学习与复习。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="unit.html?unit=unit-1">进入第一单元</a>
+            <a class="button button-secondary" href="flashcards.html?unit=unit-1">开始抽认卡</a>
           </div>
         </section>
 
-        <section class="study-space section-card" id="study" aria-labelledby="study-title">
+        <section class="section-panel">
           <div class="section-heading">
             <div>
-              <span class="section-tag">Study Space</span>
-              <h2 id="study-title">词根词缀卡片库</h2>
+              <p class="section-kicker">Units</p>
+              <h2 class="section-title">课程单元</h2>
             </div>
-            <p id="study-caption">
-              支持按词根、词缀筛选；点开右侧详情即可查看音标、构词方法、中文释义与发音按钮。
-            </p>
+            <p class="section-desc">点击单元进入对应页面，再从总览表继续查看具体词根词缀详情。</p>
           </div>
-
-          <div class="filter-row" role="toolbar" aria-label="筛选方式">
-            <button class="pill-filter is-active" type="button" data-filter="all">全部</button>
-            <button class="pill-filter" type="button" data-filter="root">只看词根</button>
-            <button class="pill-filter" type="button" data-filter="affix">只看词缀</button>
-            <span class="result-count" id="result-count">0 张卡片</span>
-          </div>
-
-          <div class="workspace-grid">
-            <section class="card-wall" aria-labelledby="card-wall-title">
-              <div class="card-wall-header">
-                <h3 id="card-wall-title">可点击复习卡</h3>
-                <span class="mini-hint">先点左边卡片，再看右侧详细解析</span>
-              </div>
-              <div class="morpheme-grid" id="morpheme-grid"></div>
-              <div class="empty-state" id="empty-state" hidden>
-                <h3>这一筛选下还没有内容</h3>
-                <p>可以切换到其他单元，或放宽搜索条件后再试试。</p>
-              </div>
-            </section>
-
-            <aside class="detail-panel" id="detail-panel" aria-live="polite">
-              <div class="detail-placeholder">
-                <h3>从左侧选择一张卡片</h3>
-                <p>这里会显示词源说明、构词思路、例词音标、中文释义以及播放按钮。</p>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section class="review-lab section-card" id="review-lab" aria-labelledby="review-title">
-          <div class="section-heading">
-            <div>
-              <span class="section-tag">Flashcards</span>
-              <h2 id="review-title">抽认卡模式</h2>
-            </div>
-            <p>随机抽取当前单元中的术语，先猜中文和构词，再点击翻面核对答案。</p>
-          </div>
-
-          <div class="flashcard-shell">
-            <article class="flashcard" id="flashcard">
-              <div class="flashcard-front">
-                <span class="flashcard-label">术语</span>
-                <h3 id="flashcard-term">载入中…</h3>
-                <p class="flashcard-ipa" id="flashcard-ipa"></p>
-              </div>
-              <div class="flashcard-back" id="flashcard-answer" hidden>
-                <div class="answer-block">
-                  <span>构词解析</span>
-                  <strong id="flashcard-breakdown"></strong>
-                </div>
-                <div class="answer-block">
-                  <span>中文释义</span>
-                  <strong id="flashcard-meaning"></strong>
-                </div>
-              </div>
-            </article>
-
-            <div class="flashcard-actions">
-              <button class="button button-secondary" id="reveal-answer" type="button">显示答案</button>
-              <button class="button button-primary" id="next-card" type="button">
-                换一张
-                <span class="button-icon" aria-hidden="true">↺</span>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="roadmap section-card" id="roadmap" aria-labelledby="roadmap-title">
-          <div class="section-heading">
-            <div>
-              <span class="section-tag">Roadmap</span>
-              <h2 id="roadmap-title">8 个单元的录入进度</h2>
-            </div>
-            <p>第一单元已经可以直接复习；后续单元会沿用同一数据结构与界面风格补充。</p>
-          </div>
-
-          <div class="roadmap-grid" id="roadmap-grid"></div>
+          <div class="unit-grid" id="unit-grid"></div>
         </section>
       </main>
-
-      <footer class="site-footer">
-        <p>Designed for quick review, mobile reading, and later expansion to the full semester.</p>
-        <a class="ghost-link" href="#unit-overview">回到顶部内容区</a>
-      </footer>
     </div>
 
-    <audio id="shared-audio" preload="none"></audio>
-
     <script src="assets/data/course-data.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/site.js"></script>
   </body>
 </html>

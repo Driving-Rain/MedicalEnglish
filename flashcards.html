@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>抽认卡 | 医学英语构词法学习站</title>
+    <meta
+      name="description"
+      content="使用医学英语术语抽认卡模式进行快速复习，先猜意思和构词，再显示答案。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="flashcards">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="index.html">
+          <span class="site-brand-mark">ME</span>
+          <span class="site-brand-text">医学英语构词法学习站</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="unit.html?unit=unit-1">单元学习</a>
+          <a class="is-current" href="flashcards.html?unit=unit-1">抽认卡</a>
+        </nav>
+      </header>
+
+      <main class="page-main">
+        <div class="breadcrumb">
+          <a href="index.html">首页</a>
+          <span>/</span>
+          <span id="flashcard-breadcrumb">抽认卡</span>
+        </div>
+
+        <section class="page-hero page-hero-compact">
+          <p class="page-kicker" id="flashcard-unit-label">Flashcards</p>
+          <h1 class="page-title" id="flashcard-page-title">抽认卡练习</h1>
+          <p class="page-lead">先看术语和音标，自己回忆中文释义与构词解析，再点击“显示答案”。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" id="flashcard-unit-link" href="unit.html?unit=unit-1">返回单元页</a>
+            <a class="button button-secondary" href="index.html">返回首页</a>
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Practice</p>
+              <h2 class="section-title">当前卡片</h2>
+            </div>
+            <p class="section-desc" id="flashcard-count">加载中</p>
+          </div>
+
+          <div class="flashcard-shell" id="flashcard-shell">
+            <article class="flashcard-card">
+              <div class="flashcard-front">
+                <p class="flashcard-label">术语</p>
+                <h3 class="flashcard-term" id="flashcard-term">加载中</h3>
+                <p class="flashcard-ipa" id="flashcard-ipa"></p>
+              </div>
+              <div class="flashcard-answer" id="flashcard-answer" hidden>
+                <div class="answer-row">
+                  <span class="answer-label">构词解析</span>
+                  <strong id="flashcard-breakdown"></strong>
+                </div>
+                <div class="answer-row">
+                  <span class="answer-label">中文释义</span>
+                  <strong id="flashcard-meaning"></strong>
+                </div>
+              </div>
+            </article>
+
+            <div class="flashcard-actions">
+              <button class="button button-secondary" id="reveal-answer" type="button">显示答案</button>
+              <button class="button button-primary" id="next-card" type="button">下一张</button>
+            </div>
+          </div>
+
+          <div class="empty-panel" id="flashcard-empty" hidden>
+            <h2 class="section-title">这个单元暂时没有可练习的卡片</h2>
+            <p class="section-desc">请先进入已完成内容的单元学习页。</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/data/course-data.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

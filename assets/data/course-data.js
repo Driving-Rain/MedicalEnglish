@@ -2077,11 +2077,525 @@ window.COURSE_DATA = {
     {
       "id": "unit-4",
       "label": "Unit 4",
-      "title": "第四单元",
-      "status": "pending",
-      "summary": "待补充课本词根词缀与老师扩展例词。",
-      "roots": [],
-      "affixes": []
+      "title": "第四单元：肿瘤、影像与治疗",
+      "status": "ready",
+      "summary": "肿瘤、放射、乳腺、化学、突变、感觉，以及切除、异常状态、治疗、性质、病因、检查等内容。",
+      "roots": [
+        {
+          "id": "onco-root",
+          "type": "root",
+          "label": "onc/o",
+          "meaningEn": "tumor",
+          "meaningZh": "肿瘤",
+          "accent": "accent",
+          "icon": "瘤",
+          "origin": "来自希腊语 onkos，表示 mass 或 tumor。",
+          "why": "用于描述肿瘤、癌症和相关病理状态。",
+          "examples": [
+            {
+              "term": "oncology",
+              "ipa": "/ɑːnˈkɑːlədʒi/",
+              "breakdown": "onc/o + -logy",
+              "meaning": "肿瘤学",
+              "audioText": "oncology"
+            },
+            {
+              "term": "oncogenesis",
+              "ipa": "/ˌɑːŋkoʊˈdʒɛnəsɪs/",
+              "breakdown": "onc/o + -genesis",
+              "meaning": "肿瘤发生",
+              "audioText": "oncogenesis"
+            },
+            {
+              "term": "oncotherapy",
+              "ipa": "/ˌɑːŋkoʊˈθerəpi/",
+              "breakdown": "onc/o + -therapy",
+              "meaning": "肿瘤治疗",
+              "audioText": "oncotherapy"
+            },
+            {
+              "term": "oncocyte",
+              "ipa": "/ˈɑːŋkoʊˌsaɪt/",
+              "breakdown": "onc/o + -cyte",
+              "meaning": "肿瘤细胞",
+              "audioText": "oncocyte"
+            }
+          ]
+        },
+        {
+          "id": "radio-root",
+          "type": "root",
+          "label": "radi/o",
+          "meaningEn": "ray",
+          "meaningZh": "射线",
+          "accent": "secondary",
+          "icon": "射",
+          "origin": "来自拉丁语 radius，表示 ray 或 spoke。",
+          "why": "常用于放射、辐射和 X 射线成像相关术语。",
+          "examples": [
+            {
+              "term": "radiology",
+              "ipa": "/ˌreɪdiˈɑːlədʒi/",
+              "breakdown": "radi/o + -logy",
+              "meaning": "放射学",
+              "audioText": "radiology"
+            },
+            {
+              "term": "radiograph",
+              "ipa": "/ˈreɪdiəˌɡræf/",
+              "breakdown": "radi/o + -graph",
+              "meaning": "X 光片",
+              "audioText": "radiograph"
+            },
+            {
+              "term": "radiotherapy",
+              "ipa": "/ˌreɪdioʊˈθerəpi/",
+              "breakdown": "radi/o + -therapy",
+              "meaning": "放射治疗",
+              "audioText": "radiotherapy"
+            },
+            {
+              "term": "radioactive",
+              "ipa": "/ˌreɪdioʊˈæktɪv/",
+              "breakdown": "radi/o + -active",
+              "meaning": "放射性的",
+              "audioText": "radioactive"
+            }
+          ]
+        },
+        {
+          "id": "masto-root",
+          "type": "root",
+          "label": "mast/o",
+          "meaningEn": "breast",
+          "meaningZh": "乳房",
+          "accent": "tertiary",
+          "icon": "乳",
+          "origin": "来自希腊语 mastos，表示 breast。",
+          "why": "用于乳房解剖、乳腺炎症、乳房疼痛和乳腺疾病相关术语。",
+          "examples": [
+            {
+              "term": "mastectomy",
+              "ipa": "/mæˈstɛktəmi/",
+              "breakdown": "mast/o + -ectomy",
+              "meaning": "乳房切除术",
+              "audioText": "mastectomy"
+            },
+            {
+              "term": "mastitis",
+              "ipa": "/mæˈstaɪtɪs/",
+              "breakdown": "mast/o + -itis",
+              "meaning": "乳腺炎",
+              "audioText": "mastitis"
+            },
+            {
+              "term": "mastalgia",
+              "ipa": "/mæˈstældʒə/",
+              "breakdown": "mast/o + -algia",
+              "meaning": "乳房疼痛",
+              "audioText": "mastalgia"
+            },
+            {
+              "term": "mastopathy",
+              "ipa": "/mæˈstɑːpəθi/",
+              "breakdown": "mast/o + -pathy",
+              "meaning": "乳腺病",
+              "audioText": "mastopathy"
+            }
+          ]
+        },
+        {
+          "id": "chemo-root",
+          "type": "root",
+          "label": "chem/o",
+          "meaningEn": "chemical",
+          "meaningZh": "化学",
+          "accent": "quaternary",
+          "icon": "化",
+          "origin": "来自希腊语 khemeia，表示 alchemy 或 chemical art。",
+          "why": "用于化学物质、药物治疗和化学感受相关术语。",
+          "examples": [
+            {
+              "term": "chemotherapy",
+              "ipa": "/ˌkiːmoʊˈθerəpi/",
+              "breakdown": "chem/o + -therapy",
+              "meaning": "化疗",
+              "audioText": "chemotherapy"
+            },
+            {
+              "term": "chemotoxic",
+              "ipa": "/ˌkiːmoʊˈtɑːksɪk/",
+              "breakdown": "chem/o + toxic",
+              "meaning": "化学毒性的",
+              "audioText": "chemotoxic"
+            },
+            {
+              "term": "chemosensory",
+              "ipa": "/ˌkiːmoʊˈsɛnsəri/",
+              "breakdown": "chem/o + sensory",
+              "meaning": "化学感受的",
+              "audioText": "chemosensory"
+            }
+          ]
+        },
+        {
+          "id": "muta-root",
+          "type": "root",
+          "label": "mut/a",
+          "meaningEn": "change",
+          "meaningZh": "改变",
+          "accent": "accent",
+          "icon": "变",
+          "origin": "来自拉丁语 mutare，表示 to change。",
+          "why": "用于遗传、生物学和医学中的结构或功能改变。",
+          "examples": [
+            {
+              "term": "mutation",
+              "ipa": "/mjuːˈteɪʃən/",
+              "breakdown": "mut/a + -tion",
+              "meaning": "突变",
+              "audioText": "mutation"
+            },
+            {
+              "term": "mutagen",
+              "ipa": "/ˈmjuːtədʒən/",
+              "breakdown": "mut/a + -gen",
+              "meaning": "诱变剂",
+              "audioText": "mutagen"
+            },
+            {
+              "term": "mutagenesis",
+              "ipa": "/ˌmjuːtəˈdʒɛnəsɪs/",
+              "breakdown": "mut/a + -genesis",
+              "meaning": "突变发生",
+              "audioText": "mutagenesis"
+            },
+            {
+              "term": "mutability",
+              "ipa": "/ˌmjuːtəˈbɪləti/",
+              "breakdown": "mut/a + -ability",
+              "meaning": "可变性",
+              "audioText": "mutability"
+            }
+          ]
+        },
+        {
+          "id": "esthesio-root",
+          "type": "root",
+          "label": "esthesi/o",
+          "meaningEn": "feeling",
+          "meaningZh": "感觉",
+          "accent": "secondary",
+          "icon": "感",
+          "origin": "来自希腊语 aisthesis，表示 sensation 或 perception。",
+          "why": "用于感觉功能、感觉异常和麻醉相关术语。",
+          "examples": [
+            {
+              "term": "anesthesia",
+              "ipa": "/ˌænəsˈθiːʒə/",
+              "breakdown": "an- + esthesi/o + -ia",
+              "meaning": "麻醉",
+              "audioText": "anesthesia"
+            },
+            {
+              "term": "hyperesthesia",
+              "ipa": "/ˌhaɪpərɛsˈθiːʒə/",
+              "breakdown": "hyper- + esthesi/o + -ia",
+              "meaning": "感觉过敏",
+              "audioText": "hyperesthesia"
+            },
+            {
+              "term": "hypoesthesia",
+              "ipa": "/ˌhaɪpoʊɛsˈθiːʒə/",
+              "breakdown": "hypo- + esthesi/o + -ia",
+              "meaning": "感觉减退",
+              "audioText": "hypoesthesia"
+            }
+          ]
+        }
+      ],
+      "affixes": [
+        {
+          "id": "oma-affix-unit4",
+          "type": "affix",
+          "label": "-oma",
+          "meaningEn": "tumor",
+          "meaningZh": "肿瘤",
+          "accent": "tertiary",
+          "icon": "瘤",
+          "origin": "来自希腊语 -oma，表示 tumor 或 swelling。",
+          "why": "用于良性或恶性肿瘤名称。",
+          "examples": [
+            {
+              "term": "carcinoma",
+              "ipa": "/ˌkɑːrsɪˈnoʊmə/",
+              "breakdown": "carcin/o + -oma",
+              "meaning": "癌瘤",
+              "audioText": "carcinoma"
+            },
+            {
+              "term": "lymphoma",
+              "ipa": "/lɪmˈfoʊmə/",
+              "breakdown": "lymph/o + -oma",
+              "meaning": "淋巴瘤",
+              "audioText": "lymphoma"
+            },
+            {
+              "term": "melanoma",
+              "ipa": "/ˌmeləˈnoʊmə/",
+              "breakdown": "melan/o + -oma",
+              "meaning": "黑色素瘤",
+              "audioText": "melanoma"
+            },
+            {
+              "term": "adenoma",
+              "ipa": "/ˌædəˈnoʊmə/",
+              "breakdown": "aden/o + -oma",
+              "meaning": "腺瘤",
+              "audioText": "adenoma"
+            }
+          ]
+        },
+        {
+          "id": "ectomy-affix",
+          "type": "affix",
+          "label": "-ectomy",
+          "meaningEn": "surgical removal",
+          "meaningZh": "手术切除",
+          "accent": "quaternary",
+          "icon": "切",
+          "origin": "来自希腊语 ektome，表示 excision 或 cutting out。",
+          "why": "表示对器官或身体部位的完整手术切除。",
+          "examples": [
+            {
+              "term": "appendectomy",
+              "ipa": "/ˌæpənˈdɛktəmi/",
+              "breakdown": "append/o + -ectomy",
+              "meaning": "阑尾切除术",
+              "audioText": "appendectomy"
+            },
+            {
+              "term": "mastectomy",
+              "ipa": "/mæˈstɛktəmi/",
+              "breakdown": "mast/o + -ectomy",
+              "meaning": "乳房切除术",
+              "audioText": "mastectomy"
+            },
+            {
+              "term": "hysterectomy",
+              "ipa": "/ˌhɪstəˈrɛktəmi/",
+              "breakdown": "hyster/o + -ectomy",
+              "meaning": "子宫切除术",
+              "audioText": "hysterectomy"
+            },
+            {
+              "term": "nephrectomy",
+              "ipa": "/nəˈfrɛktəmi/",
+              "breakdown": "nephr/o + -ectomy",
+              "meaning": "肾切除术",
+              "audioText": "nephrectomy"
+            }
+          ]
+        },
+        {
+          "id": "ia-affix",
+          "type": "affix",
+          "label": "-ia",
+          "meaningEn": "diseased or abnormal state",
+          "meaningZh": "疾病或异常状态",
+          "accent": "accent",
+          "icon": "态",
+          "origin": "来自希腊语 -ia，用于构成表示疾病或状态的名词。",
+          "why": "表示医学术语中的病理状态或异常状态。",
+          "examples": [
+            {
+              "term": "pneumonia",
+              "ipa": "/nuːˈmoʊniə/",
+              "breakdown": "pneum/o + -ia",
+              "meaning": "肺炎",
+              "audioText": "pneumonia"
+            },
+            {
+              "term": "anemia",
+              "ipa": "/əˈniːmiə/",
+              "breakdown": "an- + em/o + -ia",
+              "meaning": "贫血",
+              "audioText": "anemia"
+            },
+            {
+              "term": "insomnia",
+              "ipa": "/ɪnˈsɑːmniə/",
+              "breakdown": "in- + somn/o + -ia",
+              "meaning": "失眠",
+              "audioText": "insomnia"
+            },
+            {
+              "term": "hysteria",
+              "ipa": "/hɪˈstɪriə/",
+              "breakdown": "hyster/o + -ia",
+              "meaning": "歇斯底里症",
+              "audioText": "hysteria"
+            }
+          ]
+        },
+        {
+          "id": "therapy-affix-unit4",
+          "type": "affix",
+          "label": "-therapy",
+          "meaningEn": "treatment",
+          "meaningZh": "治疗",
+          "accent": "secondary",
+          "icon": "疗",
+          "origin": "来自希腊语 therapeia，表示 treatment 或 healing。",
+          "why": "用于表示医学治疗的类型或方法。",
+          "examples": [
+            {
+              "term": "chemotherapy",
+              "ipa": "/ˌkiːmoʊˈθerəpi/",
+              "breakdown": "chem/o + -therapy",
+              "meaning": "化疗",
+              "audioText": "chemotherapy"
+            },
+            {
+              "term": "physiotherapy",
+              "ipa": "/ˌfɪzioʊˈθerəpi/",
+              "breakdown": "physi/o + -therapy",
+              "meaning": "物理治疗",
+              "audioText": "physiotherapy"
+            },
+            {
+              "term": "radiotherapy",
+              "ipa": "/ˌreɪdioʊˈθerəpi/",
+              "breakdown": "radi/o + -therapy",
+              "meaning": "放射治疗",
+              "audioText": "radiotherapy"
+            },
+            {
+              "term": "psychotherapy",
+              "ipa": "/ˌsaɪkoʊˈθerəpi/",
+              "breakdown": "psych/o + -therapy",
+              "meaning": "心理治疗",
+              "audioText": "psychotherapy"
+            }
+          ]
+        },
+        {
+          "id": "ous-affix",
+          "type": "affix",
+          "label": "-ous",
+          "meaningEn": "having a particular quality",
+          "meaningZh": "具有某种性质",
+          "accent": "tertiary",
+          "icon": "性",
+          "origin": "来自拉丁语 -osus，表示 full of。",
+          "why": "构成表示具有某种性质或特征的形容词。",
+          "examples": [
+            {
+              "term": "cancerous",
+              "ipa": "/ˈkænsərəs/",
+              "breakdown": "cancer + -ous",
+              "meaning": "癌性的",
+              "audioText": "cancerous"
+            },
+            {
+              "term": "infectious",
+              "ipa": "/ɪnˈfɛkʃəs/",
+              "breakdown": "infect + -ous",
+              "meaning": "传染性的",
+              "audioText": "infectious"
+            },
+            {
+              "term": "nervous",
+              "ipa": "/ˈnɜːrvəs/",
+              "breakdown": "nerv/o + -ous",
+              "meaning": "神经的",
+              "audioText": "nervous"
+            },
+            {
+              "term": "mucous",
+              "ipa": "/ˈmjuːkəs/",
+              "breakdown": "muc/o + -ous",
+              "meaning": "黏液的",
+              "audioText": "mucous"
+            }
+          ]
+        },
+        {
+          "id": "gene-affix",
+          "type": "affix",
+          "label": "-gene",
+          "meaningEn": "something that is produced",
+          "meaningZh": "产生物；致因",
+          "accent": "quaternary",
+          "icon": "因",
+          "origin": "来自希腊语 -genes，表示 born of 或 produced by。",
+          "why": "表示产生因素、致病因素或来源。",
+          "examples": [
+            {
+              "term": "mutagene",
+              "ipa": "/ˈmjuːtədʒiːn/",
+              "breakdown": "mut/a + -gene",
+              "meaning": "致突变因子",
+              "audioText": "mutagene"
+            },
+            {
+              "term": "pathogen",
+              "ipa": "/ˈpæθədʒən/",
+              "breakdown": "path/o + -gen(e)",
+              "meaning": "病原体",
+              "audioText": "pathogen"
+            },
+            {
+              "term": "carcinogene",
+              "ipa": "/kɑːrˈsɪnədʒiːn/",
+              "breakdown": "carcin/o + -gene",
+              "meaning": "致癌物",
+              "audioText": "carcinogene"
+            }
+          ]
+        },
+        {
+          "id": "opsy-affix-unit4",
+          "type": "affix",
+          "label": "-opsy",
+          "meaningEn": "examination",
+          "meaningZh": "检查",
+          "accent": "accent",
+          "icon": "检",
+          "origin": "来自希腊语 opsis，表示 view 或 sight。",
+          "why": "用于诊断性观察、检查或视觉检视相关术语。",
+          "examples": [
+            {
+              "term": "biopsy",
+              "ipa": "/ˈbaɪɑːpsi/",
+              "breakdown": "bi/o + -opsy",
+              "meaning": "活组织检查",
+              "audioText": "biopsy"
+            },
+            {
+              "term": "autopsy",
+              "ipa": "/ˈɔːtɑːpsi/",
+              "breakdown": "auto- + -opsy",
+              "meaning": "尸检",
+              "audioText": "autopsy"
+            },
+            {
+              "term": "endoscopy",
+              "ipa": "/ɛnˈdɑːskəpi/",
+              "breakdown": "end/o + -scopy",
+              "meaning": "内镜检查",
+              "audioText": "endoscopy"
+            },
+            {
+              "term": "necropsy",
+              "ipa": "/ˈnɛkrɑːpsi/",
+              "breakdown": "necr/o + -opsy",
+              "meaning": "尸体解剖",
+              "audioText": "necropsy"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "unit-5",

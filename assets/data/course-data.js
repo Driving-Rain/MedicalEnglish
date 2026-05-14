@@ -2600,20 +2600,1356 @@ window.COURSE_DATA = {
     {
       "id": "unit-5",
       "label": "Unit 5",
-      "title": "第五单元",
-      "status": "pending",
-      "summary": "待补充课本词根词缀与老师扩展例词。",
-      "roots": [],
-      "affixes": []
+      "title": "第五单元：血液、血管与组织结构",
+      "status": "ready",
+      "summary": "血液、血管、骨、组织、软骨、水分，以及共同、多重、跨越、新生、细胞、形成、修复等内容。",
+      "roots": [
+        {
+          "id": "hemo-root",
+          "type": "root",
+          "label": "hem/o",
+          "meaningEn": "blood",
+          "meaningZh": "血液",
+          "accent": "secondary",
+          "icon": "血",
+          "origin": "来自希腊语 haima，表示 blood。",
+          "why": "用于血液或血液相关状态。",
+          "examples": [
+            {
+              "term": "hemoglobin",
+              "ipa": "/ˌhiːməˈɡloʊbɪn/",
+              "breakdown": "hem/o + globin",
+              "meaning": "血红蛋白",
+              "audioText": "hemoglobin"
+            },
+            {
+              "term": "hemorrhage",
+              "ipa": "/ˈhemərɪdʒ/",
+              "breakdown": "hem/o + -rrhage (rush out)",
+              "meaning": "出血",
+              "audioText": "hemorrhage"
+            },
+            {
+              "term": "hematology",
+              "ipa": "/ˌhiːməˈtɑːlədʒi/",
+              "breakdown": "hem/o + -logy",
+              "meaning": "血液学",
+              "audioText": "hematology"
+            },
+            {
+              "term": "hemophilia",
+              "ipa": "/ˌhiːməˈfɪliə/",
+              "breakdown": "hem/o + -philia (tendency)",
+              "meaning": "血友病",
+              "audioText": "hemophilia"
+            }
+          ]
+        },
+        {
+          "id": "vaso-root",
+          "type": "root",
+          "label": "vas/o",
+          "meaningEn": "vessel",
+          "meaningZh": "管；血管",
+          "accent": "accent",
+          "icon": "管",
+          "origin": "来自拉丁语 vas，表示 vessel 或 container。",
+          "why": "用于血管等管状结构，尤其是血管相关术语。",
+          "examples": [
+            {
+              "term": "vasoconstriction",
+              "ipa": "/ˌveɪzoʊkənˈstrɪkʃən/",
+              "breakdown": "vas/o + constriction",
+              "meaning": "血管收缩",
+              "audioText": "vasoconstriction"
+            },
+            {
+              "term": "vasodilation",
+              "ipa": "/ˌveɪzoʊdaɪˈleɪʃən/",
+              "breakdown": "vas/o + dilation",
+              "meaning": "血管扩张",
+              "audioText": "vasodilation"
+            },
+            {
+              "term": "vasectomy",
+              "ipa": "/vəˈsektəmi/",
+              "breakdown": "vas/o + -ectomy",
+              "meaning": "输精管切除术",
+              "audioText": "vasectomy"
+            },
+            {
+              "term": "vasospasm",
+              "ipa": "/ˈveɪzoʊˌspæzəm/",
+              "breakdown": "vas/o + spasm",
+              "meaning": "血管痉挛",
+              "audioText": "vasospasm"
+            }
+          ]
+        },
+        {
+          "id": "vasculo-root",
+          "type": "root",
+          "label": "vascul/o",
+          "meaningEn": "vessel",
+          "meaningZh": "血管",
+          "accent": "quaternary",
+          "icon": "脉",
+          "origin": "来自拉丁语 vasculum，是 vas 的小称形式，表示 small vessel。",
+          "why": "用于血管解剖、血管炎症、血管疾病和血管生成。",
+          "examples": [
+            {
+              "term": "vascular",
+              "ipa": "/ˈvæskjələr/",
+              "breakdown": "vascul/o + -ar",
+              "meaning": "血管的",
+              "audioText": "vascular"
+            },
+            {
+              "term": "vasculitis",
+              "ipa": "/ˌvæskjʊˈlaɪtɪs/",
+              "breakdown": "vascul/o + -itis",
+              "meaning": "血管炎",
+              "audioText": "vasculitis"
+            },
+            {
+              "term": "vasculopathy",
+              "ipa": "/ˌvæskjʊˈlɑːpəθi/",
+              "breakdown": "vascul/o + -pathy",
+              "meaning": "血管病",
+              "audioText": "vasculopathy"
+            },
+            {
+              "term": "vasculogenesis",
+              "ipa": "/ˌvæskjʊloʊˈdʒɛnəsɪs/",
+              "breakdown": "vascul/o + -genesis",
+              "meaning": "血管生成",
+              "audioText": "vasculogenesis"
+            }
+          ]
+        },
+        {
+          "id": "osteo-root",
+          "type": "root",
+          "label": "oste/o",
+          "meaningEn": "bone",
+          "meaningZh": "骨",
+          "accent": "tertiary",
+          "icon": "骨",
+          "origin": "来自希腊语 osteon，表示 bone。",
+          "why": "用于骨、骨疾病和骨相关结构。",
+          "examples": [
+            {
+              "term": "osteopathy",
+              "ipa": "/ˌɑːstiˈɑːpəθi/",
+              "breakdown": "oste/o + -pathy",
+              "meaning": "骨病",
+              "audioText": "osteopathy"
+            },
+            {
+              "term": "osteoporosis",
+              "ipa": "/ˌɑːstioʊpəˈroʊsɪs/",
+              "breakdown": "oste/o + porosis (full of holes)",
+              "meaning": "骨质疏松症",
+              "audioText": "osteoporosis"
+            },
+            {
+              "term": "osteotomy",
+              "ipa": "/ˌɑːstiˈɑːtəmi/",
+              "breakdown": "oste/o + -tomy",
+              "meaning": "截骨术",
+              "audioText": "osteotomy"
+            },
+            {
+              "term": "osteoblast",
+              "ipa": "/ˈɑːstioʊˌblæst/",
+              "breakdown": "oste/o + -blast (builder cell)",
+              "meaning": "成骨细胞",
+              "audioText": "osteoblast"
+            }
+          ]
+        },
+        {
+          "id": "histo-root",
+          "type": "root",
+          "label": "hist/o",
+          "meaningEn": "tissue",
+          "meaningZh": "组织",
+          "accent": "secondary",
+          "icon": "织",
+          "origin": "来自希腊语 histos，表示 tissue 或 web。",
+          "why": "用于组织学、组织病理学和组织形成相关术语。",
+          "examples": [
+            {
+              "term": "histology",
+              "ipa": "/hɪˈstɑːlədʒi/",
+              "breakdown": "hist/o + -logy",
+              "meaning": "组织学",
+              "audioText": "histology"
+            },
+            {
+              "term": "histopathology",
+              "ipa": "/ˌhɪstoʊpəˈθɑːlədʒi/",
+              "breakdown": "hist/o + path/o + -logy",
+              "meaning": "组织病理学",
+              "audioText": "histopathology"
+            },
+            {
+              "term": "histogenesis",
+              "ipa": "/ˌhɪstoʊˈdʒɛnəsɪs/",
+              "breakdown": "hist/o + -genesis",
+              "meaning": "组织形成",
+              "audioText": "histogenesis"
+            }
+          ]
+        },
+        {
+          "id": "chondro-root",
+          "type": "root",
+          "label": "chondr/o",
+          "meaningEn": "cartilage",
+          "meaningZh": "软骨",
+          "accent": "quaternary",
+          "icon": "软",
+          "origin": "来自希腊语 chondros，表示 cartilage 或 grain。",
+          "why": "用于软骨结构、软骨细胞、软骨炎症和软骨生成。",
+          "examples": [
+            {
+              "term": "chondritis",
+              "ipa": "/kɑːnˈdraɪtɪs/",
+              "breakdown": "chondr/o + -itis",
+              "meaning": "软骨炎",
+              "audioText": "chondritis"
+            },
+            {
+              "term": "chondrocyte",
+              "ipa": "/ˈkɑːndroʊˌsaɪt/",
+              "breakdown": "chondr/o + -cyte",
+              "meaning": "软骨细胞",
+              "audioText": "chondrocyte"
+            },
+            {
+              "term": "chondroma",
+              "ipa": "/kɑːnˈdroʊmə/",
+              "breakdown": "chondr/o + -oma",
+              "meaning": "软骨瘤",
+              "audioText": "chondroma"
+            },
+            {
+              "term": "chondrogenesis",
+              "ipa": "/ˌkɑːndroʊˈdʒɛnəsɪs/",
+              "breakdown": "chondr/o + -genesis",
+              "meaning": "软骨生成",
+              "audioText": "chondrogenesis"
+            }
+          ]
+        },
+        {
+          "id": "angio-root",
+          "type": "root",
+          "label": "angi/o",
+          "meaningEn": "blood vessel",
+          "meaningZh": "血管",
+          "accent": "accent",
+          "icon": "络",
+          "origin": "来自希腊语 angeion，表示 vessel 或 container。",
+          "why": "常见于血管造影、血管成形和血管外科相关术语；angi/o 常偏向血管结构或造影语境，vascul/o 常偏向血管系统或血管性疾病语境。",
+          "examples": [
+            {
+              "term": "angioplasty",
+              "ipa": "/ˈændʒioʊˌplæsti/",
+              "breakdown": "angi/o + -plasty",
+              "meaning": "血管成形术",
+              "audioText": "angioplasty"
+            },
+            {
+              "term": "angiogram",
+              "ipa": "/ˈændʒioʊˌɡræm/",
+              "breakdown": "angi/o + -gram",
+              "meaning": "血管造影图",
+              "audioText": "angiogram"
+            },
+            {
+              "term": "angiogenesis",
+              "ipa": "/ˌændʒioʊˈdʒɛnəsɪs/",
+              "breakdown": "angi/o + -genesis",
+              "meaning": "血管生成",
+              "audioText": "angiogenesis"
+            },
+            {
+              "term": "angiosarcoma",
+              "ipa": "/ˌændʒioʊsɑːrˈkoʊmə/",
+              "breakdown": "angi/o + sarc + oma",
+              "meaning": "血管肉瘤",
+              "audioText": "angiosarcoma"
+            }
+          ]
+        },
+        {
+          "id": "hydro-root",
+          "type": "root",
+          "label": "hydr/o",
+          "meaningEn": "water",
+          "meaningZh": "水",
+          "accent": "tertiary",
+          "icon": "水",
+          "origin": "来自希腊语 hydor，表示 water。",
+          "why": "用于液体、水分平衡和与水相关的治疗或病理状态。",
+          "examples": [
+            {
+              "term": "hydrotherapy",
+              "ipa": "/ˌhaɪdroʊˈθerəpi/",
+              "breakdown": "hydr/o + -therapy",
+              "meaning": "水疗",
+              "audioText": "hydrotherapy"
+            },
+            {
+              "term": "hydrocephalus",
+              "ipa": "/ˌhaɪdroʊˈsefələs/",
+              "breakdown": "hydr/o + cephal/o + -us",
+              "meaning": "脑积水",
+              "audioText": "hydrocephalus"
+            },
+            {
+              "term": "dehydration",
+              "ipa": "/ˌdiːhaɪˈdreɪʃən/",
+              "breakdown": "de- + hydr/o + -ation",
+              "meaning": "脱水",
+              "audioText": "dehydration"
+            },
+            {
+              "term": "hydrophobia",
+              "ipa": "/ˌhaɪdroʊˈfoʊbiə/",
+              "breakdown": "hydr/o + phobia (fear)",
+              "meaning": "恐水症",
+              "audioText": "hydrophobia"
+            }
+          ]
+        }
+      ],
+      "affixes": [
+        {
+          "id": "con-affix",
+          "type": "affix",
+          "label": "con-",
+          "meaningEn": "together; with",
+          "meaningZh": "共同；一起",
+          "accent": "accent",
+          "icon": "合",
+          "origin": "来自拉丁语 com，表示 together。",
+          "why": "表示连接、共同作用或合在一起。",
+          "examples": [
+            {
+              "term": "congenital",
+              "ipa": "/kənˈdʒenɪtl/",
+              "breakdown": "con- + genit + -al",
+              "meaning": "先天的",
+              "audioText": "congenital"
+            },
+            {
+              "term": "consolidation",
+              "ipa": "/kənˌsɑːlɪˈdeɪʃən/",
+              "breakdown": "con- + solid + -ation",
+              "meaning": "巩固；实变",
+              "audioText": "consolidation"
+            },
+            {
+              "term": "conjugate",
+              "ipa": "/ˈkɑːndʒəɡət/",
+              "breakdown": "con- + jugate (join)",
+              "meaning": "结合的",
+              "audioText": "conjugate"
+            }
+          ]
+        },
+        {
+          "id": "pluri-affix",
+          "type": "affix",
+          "label": "pluri-",
+          "meaningEn": "several; many",
+          "meaningZh": "多个；许多",
+          "accent": "secondary",
+          "icon": "多",
+          "origin": "来自拉丁语 plures，表示 more 或 many。",
+          "why": "用于表示多个成分、多样性或多种能力。",
+          "examples": [
+            {
+              "term": "pluripotent",
+              "ipa": "/plʊˈrɪpətənt/",
+              "breakdown": "pluri- + potent",
+              "meaning": "多能的",
+              "audioText": "pluripotent"
+            },
+            {
+              "term": "pluricellular",
+              "ipa": "/ˌplʊrɪˈseljələr/",
+              "breakdown": "pluri- + cellular",
+              "meaning": "多细胞的",
+              "audioText": "pluricellular"
+            },
+            {
+              "term": "pluriglandular",
+              "ipa": "/ˌplʊrɪˈɡlændjələr/",
+              "breakdown": "pluri- + glandular",
+              "meaning": "多腺的",
+              "audioText": "pluriglandular"
+            },
+            {
+              "term": "pluriform",
+              "ipa": "/ˈplʊrɪˌfɔːrm/",
+              "breakdown": "pluri- + form",
+              "meaning": "多形的",
+              "audioText": "pluriform"
+            }
+          ]
+        },
+        {
+          "id": "trans-affix",
+          "type": "affix",
+          "label": "trans-",
+          "meaningEn": "across; through",
+          "meaningZh": "跨越；通过",
+          "accent": "quaternary",
+          "icon": "跨",
+          "origin": "来自拉丁语 trans，表示 across 或 beyond。",
+          "why": "用于表示穿过屏障、跨越区域或方向上的转移。",
+          "examples": [
+            {
+              "term": "transplant",
+              "ipa": "/ˈtrænsplænt/",
+              "breakdown": "trans- + plant",
+              "meaning": "移植",
+              "audioText": "transplant"
+            },
+            {
+              "term": "transdermal",
+              "ipa": "/trænzˈdɜːrməl/",
+              "breakdown": "trans- + dermal",
+              "meaning": "经皮的",
+              "audioText": "transdermal"
+            },
+            {
+              "term": "transurethral",
+              "ipa": "/ˌtrænzjʊˈriːθrəl/",
+              "breakdown": "trans- + urethral",
+              "meaning": "经尿道的",
+              "audioText": "transurethral"
+            },
+            {
+              "term": "transcranial",
+              "ipa": "/trænzˈkreɪniəl/",
+              "breakdown": "trans- + cranial",
+              "meaning": "经颅的",
+              "audioText": "transcranial"
+            }
+          ]
+        },
+        {
+          "id": "neo-affix",
+          "type": "affix",
+          "label": "neo-",
+          "meaningEn": "new",
+          "meaningZh": "新的；新生",
+          "accent": "tertiary",
+          "icon": "新",
+          "origin": "来自希腊语 neos，表示 new。",
+          "why": "用于表示新的、近期出现的状态、过程或生物。",
+          "examples": [
+            {
+              "term": "neonatal",
+              "ipa": "/ˌniːoʊˈneɪtl/",
+              "breakdown": "neo- + natal (birth)",
+              "meaning": "新生的",
+              "audioText": "neonatal"
+            },
+            {
+              "term": "neoplasm",
+              "ipa": "/ˈniːoʊˌplæzəm/",
+              "breakdown": "neo- + plasm（形成物）",
+              "meaning": "新生物（赘生物）",
+              "audioText": "neoplasm"
+            },
+            {
+              "term": "neogenesis",
+              "ipa": "/ˌniːoʊˈdʒɛnəsɪs/",
+              "breakdown": "neo- + -genesis",
+              "meaning": "新生成",
+              "audioText": "neogenesis"
+            },
+            {
+              "term": "neophyte",
+              "ipa": "/ˈniːəˌfaɪt/",
+              "breakdown": "neo- + phyte",
+              "meaning": "新手",
+              "audioText": "neophyte"
+            }
+          ]
+        },
+        {
+          "id": "ar-affix",
+          "type": "affix",
+          "label": "-ar",
+          "meaningEn": "of; belonging to; like",
+          "meaningZh": "属于；像；有关",
+          "accent": "accent",
+          "icon": "属",
+          "origin": "来自拉丁语 -aris，表示 pertaining to。",
+          "why": "用于构成表示关系、归属或相似性的形容词。",
+          "examples": [
+            {
+              "term": "vascular",
+              "ipa": "/ˈvæskjələr/",
+              "breakdown": "vascul/o + -ar",
+              "meaning": "血管的",
+              "audioText": "vascular"
+            },
+            {
+              "term": "alveolar",
+              "ipa": "/ælˈviːələr/",
+              "breakdown": "alveol/o + -ar",
+              "meaning": "肺泡的",
+              "audioText": "alveolar"
+            },
+            {
+              "term": "muscular",
+              "ipa": "/ˈmʌskjələr/",
+              "breakdown": "muscul/o + -ar",
+              "meaning": "肌肉的",
+              "audioText": "muscular"
+            },
+            {
+              "term": "cellular",
+              "ipa": "/ˈseljələr/",
+              "breakdown": "cell + -ar",
+              "meaning": "细胞的",
+              "audioText": "cellular"
+            }
+          ]
+        },
+        {
+          "id": "blast-affix",
+          "type": "affix",
+          "label": "-blast / -blasto / -blastic",
+          "meaningEn": "embryonic or immature cell; bud; germ",
+          "meaningZh": "胚性或未成熟细胞；芽；胚",
+          "accent": "secondary",
+          "icon": "芽",
+          "origin": "来自希腊语 blastos，表示 germ 或 sprout。",
+          "why": "表示发育中的未成熟细胞或前体细胞。",
+          "examples": [
+            {
+              "term": "osteoblast",
+              "ipa": "/ˈɑːstioʊˌblæst/",
+              "breakdown": "oste/o + -blast",
+              "meaning": "成骨细胞",
+              "audioText": "osteoblast"
+            },
+            {
+              "term": "fibroblast",
+              "ipa": "/ˈfaɪbroʊˌblæst/",
+              "breakdown": "fibr/o + -blast",
+              "meaning": "成纤维细胞",
+              "audioText": "fibroblast"
+            },
+            {
+              "term": "myeloblast",
+              "ipa": "/ˈmaɪəloʊˌblæst/",
+              "breakdown": "myel/o (bone marrow) + -blast",
+              "meaning": "成髓细胞",
+              "audioText": "myeloblast"
+            },
+            {
+              "term": "blastoma",
+              "ipa": "/blæˈstoʊmə/",
+              "breakdown": "blast/o + -oma",
+              "meaning": "母细胞瘤",
+              "audioText": "blastoma"
+            }
+          ]
+        },
+        {
+          "id": "cyte-affix",
+          "type": "affix",
+          "label": "-cyte / -cytic",
+          "meaningEn": "cell",
+          "meaningZh": "细胞",
+          "accent": "quaternary",
+          "icon": "胞",
+          "origin": "来自希腊语 kytos，表示 container 或 cell。",
+          "why": "用于细胞类型和与细胞相关的状态。",
+          "examples": [
+            {
+              "term": "leukocyte",
+              "ipa": "/ˈluːkəˌsaɪt/",
+              "breakdown": "leuk/o + -cyte",
+              "meaning": "白细胞",
+              "audioText": "leukocyte"
+            },
+            {
+              "term": "erythrocyte",
+              "ipa": "/ɪˈrɪθrəˌsaɪt/",
+              "breakdown": "erythr/o + -cyte",
+              "meaning": "红细胞",
+              "audioText": "erythrocyte"
+            },
+            {
+              "term": "thrombocyte",
+              "ipa": "/ˈθrɑːmboʊˌsaɪt/",
+              "breakdown": "thromb/o + -cyte",
+              "meaning": "血小板",
+              "audioText": "thrombocyte"
+            },
+            {
+              "term": "cytology",
+              "ipa": "/saɪˈtɑːlədʒi/",
+              "breakdown": "cyt/o + -logy",
+              "meaning": "细胞学",
+              "audioText": "cytology"
+            }
+          ]
+        },
+        {
+          "id": "genesis-affix",
+          "type": "affix",
+          "label": "-genesis",
+          "meaningEn": "formation; development; creation; origination",
+          "meaningZh": "形成；发生；发展",
+          "accent": "tertiary",
+          "icon": "生",
+          "origin": "来自希腊语 genesis，表示 origin 或 birth。",
+          "why": "表示形成、发生或发展过程。",
+          "examples": [
+            {
+              "term": "angiogenesis",
+              "ipa": "/ˌændʒioʊˈdʒɛnəsɪs/",
+              "breakdown": "angi/o + -genesis",
+              "meaning": "血管生成",
+              "audioText": "angiogenesis"
+            },
+            {
+              "term": "neurogenesis",
+              "ipa": "/ˌnʊroʊˈdʒɛnəsɪs/",
+              "breakdown": "neur/o + -genesis",
+              "meaning": "神经发生",
+              "audioText": "neurogenesis"
+            },
+            {
+              "term": "gametogenesis",
+              "ipa": "/ɡəˌmiːtoʊˈdʒɛnəsɪs/",
+              "breakdown": "gamet/o + -genesis",
+              "meaning": "配子形成",
+              "audioText": "gametogenesis"
+            },
+            {
+              "term": "osteogenesis",
+              "ipa": "/ˌɑːstioʊˈdʒɛnəsɪs/",
+              "breakdown": "oste/o + -genesis",
+              "meaning": "成骨",
+              "audioText": "osteogenesis"
+            }
+          ]
+        },
+        {
+          "id": "plasty-affix",
+          "type": "affix",
+          "label": "-plasty",
+          "meaningEn": "surgical repair; surgical reconstruction",
+          "meaningZh": "手术修复；重建",
+          "accent": "accent",
+          "icon": "修",
+          "origin": "来自希腊语 plastos，表示 formed 或 molded。",
+          "why": "表示组织或器官的外科整形、修复或重建。",
+          "examples": [
+            {
+              "term": "rhinoplasty",
+              "ipa": "/ˈraɪnoʊˌplæsti/",
+              "breakdown": "rhin/o + -plasty",
+              "meaning": "鼻整形术",
+              "audioText": "rhinoplasty"
+            },
+            {
+              "term": "angioplasty",
+              "ipa": "/ˈændʒioʊˌplæsti/",
+              "breakdown": "angi/o + -plasty",
+              "meaning": "血管成形术",
+              "audioText": "angioplasty"
+            },
+            {
+              "term": "keratoplasty",
+              "ipa": "/ˈkerətoʊˌplæsti/",
+              "breakdown": "kerat/o + -plasty",
+              "meaning": "角膜移植术",
+              "audioText": "keratoplasty"
+            },
+            {
+              "term": "mammoplasty",
+              "ipa": "/ˈmæməˌplæsti/",
+              "breakdown": "mamm/o + -plasty",
+              "meaning": "乳房整形术",
+              "audioText": "mammoplasty"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "unit-6",
       "label": "Unit 6",
-      "title": "第六单元",
-      "status": "pending",
-      "summary": "待补充课本词根词缀与老师扩展例词。",
-      "roots": [],
-      "affixes": []
+      "title": "第六单元：切割、来源与血液免疫系统",
+      "status": "ready",
+      "summary": "切割、发生、淋巴、腺体、凝血、脊髓与整体性，以及共同、单一、差异、附着、颜色、数量和学科等内容。",
+      "roots": [
+        {
+          "id": "cis-root",
+          "type": "root",
+          "label": "cis",
+          "meaningEn": "cut",
+          "meaningZh": "切割",
+          "accent": "secondary",
+          "icon": "切",
+          "origin": "来自拉丁语 cis / caedere，表示 to cut。",
+          "why": "用于外科或解剖中与切开、切除、分割有关的术语。",
+          "examples": [
+            {
+              "term": "incision",
+              "ipa": "/ɪnˈsɪʒən/",
+              "breakdown": "in- + cis + -ion",
+              "meaning": "切口",
+              "audioText": "incision"
+            },
+            {
+              "term": "excision",
+              "ipa": "/ɪkˈsɪʒən/",
+              "breakdown": "ex- + cis + -ion",
+              "meaning": "切除",
+              "audioText": "excision"
+            },
+            {
+              "term": "circumcision",
+              "ipa": "/ˌsɜːrkəmˈsɪʒən/",
+              "breakdown": "circum- + cis + -ion",
+              "meaning": "包皮环切术",
+              "audioText": "circumcision"
+            }
+          ]
+        },
+        {
+          "id": "geno-root",
+          "type": "root",
+          "label": "gen/o",
+          "meaningEn": "originate",
+          "meaningZh": "产生；起源",
+          "accent": "quaternary",
+          "icon": "源",
+          "origin": "来自希腊语 gennan，表示 to produce 或 beget。",
+          "why": "表示形成、来源或产生，常见于生物学和医学术语。",
+          "examples": [
+            {
+              "term": "pathogen",
+              "ipa": "/ˈpæθədʒən/",
+              "breakdown": "path/o + gen",
+              "meaning": "病原体",
+              "audioText": "pathogen"
+            },
+            {
+              "term": "carcinogen",
+              "ipa": "/kɑːrˈsɪnədʒən/",
+              "breakdown": "carcin/o + gen",
+              "meaning": "致癌物",
+              "audioText": "carcinogen"
+            },
+            {
+              "term": "hydrogen",
+              "ipa": "/ˈhaɪdrədʒən/",
+              "breakdown": "hydr/o + gen",
+              "meaning": "氢",
+              "audioText": "hydrogen"
+            },
+            {
+              "term": "mutagen",
+              "ipa": "/ˈmjuːtədʒən/",
+              "breakdown": "mut/a + gen",
+              "meaning": "诱变剂",
+              "audioText": "mutagen"
+            }
+          ]
+        },
+        {
+          "id": "lympho-root",
+          "type": "root",
+          "label": "lymph/o",
+          "meaningEn": "lymphatic tissue",
+          "meaningZh": "淋巴组织",
+          "accent": "accent",
+          "icon": "淋",
+          "origin": "来自拉丁语 lympha，表示 water 或 clear fluid。",
+          "why": "用于免疫系统、淋巴管和淋巴组织相关术语。",
+          "examples": [
+            {
+              "term": "lymphoma",
+              "ipa": "/lɪmˈfoʊmə/",
+              "breakdown": "lymph/o + -oma",
+              "meaning": "淋巴瘤",
+              "audioText": "lymphoma"
+            },
+            {
+              "term": "lymphocyte",
+              "ipa": "/ˈlɪmfəˌsaɪt/",
+              "breakdown": "lymph/o + -cyte",
+              "meaning": "淋巴细胞",
+              "audioText": "lymphocyte"
+            },
+            {
+              "term": "lymphadenitis",
+              "ipa": "/ˌlɪmfædəˈnaɪtɪs/",
+              "breakdown": "lymph/o + aden/o（腺） + -itis",
+              "meaning": "淋巴腺/结炎",
+              "audioText": "lymphadenitis"
+            },
+            {
+              "term": "lymphangiogram",
+              "ipa": "/lɪmˈfændʒioʊˌɡræm/",
+              "breakdown": "lymph/o + angi/o + -gram",
+              "meaning": "淋巴管造影",
+              "audioText": "lymphangiogram"
+            }
+          ]
+        },
+        {
+          "id": "adeno-root",
+          "type": "root",
+          "label": "aden/o",
+          "meaningEn": "gland",
+          "meaningZh": "腺；腺体",
+          "accent": "tertiary",
+          "icon": "腺",
+          "origin": "来自希腊语 aden，表示 gland。",
+          "why": "用于内分泌或外分泌腺体相关术语。",
+          "examples": [
+            {
+              "term": "adenoma",
+              "ipa": "/ˌædəˈnoʊmə/",
+              "breakdown": "aden/o + -oma",
+              "meaning": "腺瘤",
+              "audioText": "adenoma"
+            },
+            {
+              "term": "adenopathy",
+              "ipa": "/ˌædəˈnɑːpəθi/",
+              "breakdown": "aden/o + -pathy",
+              "meaning": "腺病",
+              "audioText": "adenopathy"
+            },
+            {
+              "term": "adenoidectomy",
+              "ipa": "/ˌædəˌnɔɪˈdektəmi/",
+              "breakdown": "adenoid + -ectomy",
+              "meaning": "腺样体切除术",
+              "audioText": "adenoidectomy"
+            },
+            {
+              "term": "adenocarcinoma",
+              "ipa": "/ˌædənoʊˌkɑːrsɪˈnoʊmə/",
+              "breakdown": "aden/o + carcin/o + -oma",
+              "meaning": "腺癌",
+              "audioText": "adenocarcinoma"
+            }
+          ]
+        },
+        {
+          "id": "thrombo-root",
+          "type": "root",
+          "label": "thromb/o",
+          "meaningEn": "clotting of blood",
+          "meaningZh": "凝血；血栓",
+          "accent": "secondary",
+          "icon": "栓",
+          "origin": "来自希腊语 thrombos，表示 lump 或 clot。",
+          "why": "用于血液学中凝血、血栓和血小板相关术语。",
+          "examples": [
+            {
+              "term": "thrombosis",
+              "ipa": "/θrɑːmˈboʊsɪs/",
+              "breakdown": "thromb/o + -osis",
+              "meaning": "血栓形成",
+              "audioText": "thrombosis"
+            },
+            {
+              "term": "thrombocyte",
+              "ipa": "/ˈθrɑːmboʊˌsaɪt/",
+              "breakdown": "thromb/o + -cyte",
+              "meaning": "血小板",
+              "audioText": "thrombocyte"
+            },
+            {
+              "term": "thrombolysis",
+              "ipa": "/θrɑːmˈbɑːləsɪs/",
+              "breakdown": "thromb/o + -lysis",
+              "meaning": "血栓溶解",
+              "audioText": "thrombolysis"
+            },
+            {
+              "term": "thrombectomy",
+              "ipa": "/θrɑːmˈbektəmi/",
+              "breakdown": "thromb/o + -ectomy",
+              "meaning": "血栓切除术",
+              "audioText": "thrombectomy"
+            }
+          ]
+        },
+        {
+          "id": "myelo-root",
+          "type": "root",
+          "label": "myel/o",
+          "meaningEn": "spinal cord",
+          "meaningZh": "脊髓；骨髓",
+          "accent": "accent",
+          "icon": "髓",
+          "origin": "来自希腊语 myelos，表示 marrow。",
+          "why": "用于脊髓或骨髓疾病、检查和治疗相关术语。",
+          "examples": [
+            {
+              "term": "myelopathy",
+              "ipa": "/ˌmaɪəˈlɑːpəθi/",
+              "breakdown": "myel/o + -pathy",
+              "meaning": "脊髓病",
+              "audioText": "myelopathy"
+            },
+            {
+              "term": "myelitis",
+              "ipa": "/ˌmaɪəˈlaɪtɪs/",
+              "breakdown": "myel/o + -itis",
+              "meaning": "脊髓炎",
+              "audioText": "myelitis"
+            },
+            {
+              "term": "myelogram",
+              "ipa": "/ˈmaɪələˌɡræm/",
+              "breakdown": "myel/o + -gram",
+              "meaning": "脊髓造影图",
+              "audioText": "myelogram"
+            },
+            {
+              "term": "myeloblast",
+              "ipa": "/ˈmaɪəloʊˌblæst/",
+              "breakdown": "myel/o + -blast",
+              "meaning": "成髓细胞",
+              "audioText": "myeloblast"
+            }
+          ]
+        },
+        {
+          "id": "pan-root",
+          "type": "root",
+          "label": "pan",
+          "meaningEn": "all; every",
+          "meaningZh": "全部；每一个",
+          "accent": "quaternary",
+          "icon": "全",
+          "origin": "来自希腊语 pan，表示 all。",
+          "why": "用于表示普遍性、整体性或影响全身的状态。",
+          "examples": [
+            {
+              "term": "pandemic",
+              "ipa": "/pænˈdemɪk/",
+              "breakdown": "pan + dem/o + -ic",
+              "meaning": "大流行病",
+              "audioText": "pandemic"
+            },
+            {
+              "term": "panarthritis",
+              "ipa": "/ˌpænɑːrˈθraɪtɪs/",
+              "breakdown": "pan + arthr/o + -itis",
+              "meaning": "全身关节炎；多发关节炎",
+              "audioText": "panarthritis"
+            },
+            {
+              "term": "pancytopenia",
+              "ipa": "/ˌpænˌsaɪtoʊˈpiːniə/",
+              "breakdown": "pan + cyt/o + -penia",
+              "meaning": "全血细胞减少",
+              "audioText": "pancytopenia"
+            },
+            {
+              "term": "panhysterectomy",
+              "ipa": "/ˌpænˌhɪstəˈrektəmi/",
+              "breakdown": "pan + hyster/o + -ectomy",
+              "meaning": "全子宫切除术",
+              "audioText": "panhysterectomy"
+            }
+          ]
+        }
+      ],
+      "affixes": [
+        {
+          "id": "syn-affix",
+          "type": "affix",
+          "label": "syn-",
+          "meaningEn": "together; at the same time",
+          "meaningZh": "共同；同时",
+          "accent": "accent",
+          "icon": "同",
+          "origin": "来自希腊语 syn，表示 with 或 together。",
+          "why": "表示联合、协调或同时发生。",
+          "examples": [
+            {
+              "term": "synthesis",
+              "ipa": "/ˈsɪnθəsɪs/",
+              "breakdown": "syn- + thesis（放置）",
+              "meaning": "合成",
+              "audioText": "synthesis"
+            },
+            {
+              "term": "syndrome",
+              "ipa": "/ˈsɪndroʊm/",
+              "breakdown": "syn- + drome（奔跑）",
+              "meaning": "综合征",
+              "audioText": "syndrome"
+            },
+            {
+              "term": "synapse",
+              "ipa": "/ˈsɪnæps/",
+              "breakdown": "syn- + apse（接触）",
+              "meaning": "突触",
+              "audioText": "synapse"
+            },
+            {
+              "term": "synchronous",
+              "ipa": "/ˈsɪŋkrənəs/",
+              "breakdown": "syn- + chron/o（时间） + -ous",
+              "meaning": "同步的",
+              "audioText": "synchronous"
+            }
+          ]
+        },
+        {
+          "id": "mono-affix",
+          "type": "affix",
+          "label": "mon/o-",
+          "meaningEn": "one",
+          "meaningZh": "一；单一",
+          "accent": "tertiary",
+          "icon": "单",
+          "origin": "来自希腊语 monos，表示 alone 或 single。",
+          "why": "用于表示单一性、一个单位或单独状态。",
+          "examples": [
+            {
+              "term": "monoclonal",
+              "ipa": "/ˌmɑːnəˈkloʊnəl/",
+              "breakdown": "mon/o + clonal",
+              "meaning": "单克隆的",
+              "audioText": "monoclonal"
+            },
+            {
+              "term": "monocyte",
+              "ipa": "/ˈmɑːnəˌsaɪt/",
+              "breakdown": "mon/o + -cyte",
+              "meaning": "单核细胞",
+              "audioText": "monocyte"
+            },
+            {
+              "term": "mononuclear",
+              "ipa": "/ˌmɑːnoʊˈnuːkliər/",
+              "breakdown": "mon/o + nuclear",
+              "meaning": "单核的",
+              "audioText": "mononuclear"
+            },
+            {
+              "term": "monoplegia",
+              "ipa": "/ˌmɑːnəˈpliːdʒə/",
+              "breakdown": "mon/o + plegia",
+              "meaning": "单瘫",
+              "audioText": "monoplegia"
+            }
+          ]
+        },
+        {
+          "id": "hetero-affix",
+          "type": "affix",
+          "label": "heter/o-",
+          "meaningEn": "other; opposite; different",
+          "meaningZh": "其他；相反；不同",
+          "accent": "quaternary",
+          "icon": "异",
+          "origin": "来自希腊语 heteros，表示 other 或 different。",
+          "why": "用于表示不同来源、不同性质或相反关系。",
+          "examples": [
+            {
+              "term": "heterosexual",
+              "ipa": "/ˌhetəroʊˈsekʃuəl/",
+              "breakdown": "heter/o + sexual",
+              "meaning": "异性恋的",
+              "audioText": "heterosexual"
+            },
+            {
+              "term": "heterogeneous",
+              "ipa": "/ˌhetərəˈdʒiːniəs/",
+              "breakdown": "heter/o + gene + -ous",
+              "meaning": "异质的",
+              "audioText": "heterogeneous"
+            },
+            {
+              "term": "heteroplasty",
+              "ipa": "/ˈhetəroʊˌplæsti/",
+              "breakdown": "heter/o + -plasty",
+              "meaning": "异种移植术",
+              "audioText": "heteroplasty"
+            },
+            {
+              "term": "heterochromia",
+              "ipa": "/ˌhetəroʊˈkroʊmiə/",
+              "breakdown": "heter/o + chrom/o（颜色） + -ia",
+              "meaning": "异色症",
+              "audioText": "heterochromia"
+            }
+          ]
+        },
+        {
+          "id": "epi-affix",
+          "type": "affix",
+          "label": "ep/i-",
+          "meaningEn": "upon; besides; over; attached to",
+          "meaningZh": "在上；旁边；覆盖；附着",
+          "accent": "secondary",
+          "icon": "附",
+          "origin": "来自希腊语 epi，表示 on、over 或 beside。",
+          "why": "表示位于其上、附近、覆盖或附着的位置关系。",
+          "examples": [
+            {
+              "term": "epidermis",
+              "ipa": "/ˌepɪˈdɜːrmɪs/",
+              "breakdown": "epi- + derm/o + -is",
+              "meaning": "表皮",
+              "audioText": "epidermis"
+            },
+            {
+              "term": "epiglottis",
+              "ipa": "/ˌepɪˈɡlɑːtɪs/",
+              "breakdown": "epi- + glottis（声门）",
+              "meaning": "会厌",
+              "audioText": "epiglottis"
+            },
+            {
+              "term": "epicardium",
+              "ipa": "/ˌepɪˈkɑːrdiəm/",
+              "breakdown": "epi- + cardi/o + -um",
+              "meaning": "心外膜",
+              "audioText": "epicardium"
+            },
+            {
+              "term": "epinephrine",
+              "ipa": "/ˌepɪˈnefrɪn/",
+              "breakdown": "epi- + nephros + -ine",
+              "meaning": "肾上腺素",
+              "audioText": "epinephrine"
+            }
+          ]
+        },
+        {
+          "id": "leuko-affix",
+          "type": "affix",
+          "label": "leuk/o-",
+          "meaningEn": "white",
+          "meaningZh": "白；白色",
+          "accent": "tertiary",
+          "icon": "白",
+          "origin": "来自希腊语 leukos，表示 white。",
+          "why": "常用于血液学中白细胞或白色病变相关术语。",
+          "examples": [
+            {
+              "term": "leukemia",
+              "ipa": "/luːˈkiːmiə/",
+              "breakdown": "leuk/o + -emia",
+              "meaning": "白血病",
+              "audioText": "leukemia"
+            },
+            {
+              "term": "leukocyte",
+              "ipa": "/ˈluːkəˌsaɪt/",
+              "breakdown": "leuk/o + -cyte",
+              "meaning": "白细胞",
+              "audioText": "leukocyte"
+            },
+            {
+              "term": "leukoplakia",
+              "ipa": "/ˌluːkoʊˈpleɪkiə/",
+              "breakdown": "leuk/o + plak（斑块） + -ia",
+              "meaning": "白斑病（黏膜）",
+              "audioText": "leukoplakia"
+            },
+            {
+              "term": "leucoderma",
+              "ipa": "/ˌluːkoʊˈdɜːrmə/",
+              "breakdown": "leuk/o + derma",
+              "meaning": "白癜风",
+              "audioText": "leucoderma"
+            }
+          ]
+        },
+        {
+          "id": "erythro-affix",
+          "type": "affix",
+          "label": "erythr/o-",
+          "meaningEn": "red",
+          "meaningZh": "红；红色",
+          "accent": "secondary",
+          "icon": "红",
+          "origin": "来自希腊语 erythros，表示 red。",
+          "why": "用于红细胞、红色组织病变或发红状态。",
+          "examples": [
+            {
+              "term": "erythrocyte",
+              "ipa": "/ɪˈrɪθrəˌsaɪt/",
+              "breakdown": "erythr/o + -cyte",
+              "meaning": "红细胞",
+              "audioText": "erythrocyte"
+            },
+            {
+              "term": "erythropoiesis",
+              "ipa": "/ɪˌrɪθroʊpɔɪˈiːsɪs/",
+              "breakdown": "erythr/o + -poiesis（生成）",
+              "meaning": "红细胞生成",
+              "audioText": "erythropoiesis"
+            },
+            {
+              "term": "erythroderma",
+              "ipa": "/ɪˌrɪθroʊˈdɜːrmə/",
+              "breakdown": "erythr/o + derma",
+              "meaning": "红皮病",
+              "audioText": "erythroderma"
+            },
+            {
+              "term": "erythroblast",
+              "ipa": "/ɪˈrɪθroʊˌblæst/",
+              "breakdown": "erythr/o + -blast",
+              "meaning": "成红血球细胞",
+              "audioText": "erythroblast"
+            }
+          ]
+        },
+        {
+          "id": "poly-affix",
+          "type": "affix",
+          "label": "poly-",
+          "meaningEn": "many",
+          "meaningZh": "多；许多",
+          "accent": "accent",
+          "icon": "众",
+          "origin": "来自希腊语 polys，表示 many 或 much。",
+          "why": "用于表示数量多、多发或过多。",
+          "examples": [
+            {
+              "term": "polycythemia",
+              "ipa": "/ˌpɑːlisaɪˈθiːmiə/",
+              "breakdown": "poly- + cyt/o + -hemia",
+              "meaning": "红细胞增多症",
+              "audioText": "polycythemia"
+            },
+            {
+              "term": "polyarthritis",
+              "ipa": "/ˌpɑːliɑːrˈθraɪtɪs/",
+              "breakdown": "poly- + arthr/o + -itis",
+              "meaning": "多关节炎",
+              "audioText": "polyarthritis"
+            },
+            {
+              "term": "polymyositis",
+              "ipa": "/ˌpɑːlimaɪoʊˈsaɪtɪs/",
+              "breakdown": "poly- + my/o + -itis",
+              "meaning": "多发性肌炎",
+              "audioText": "polymyositis"
+            },
+            {
+              "term": "polyuria",
+              "ipa": "/ˌpɑːliˈjʊriə/",
+              "breakdown": "poly- + uria",
+              "meaning": "多尿症",
+              "audioText": "polyuria"
+            }
+          ]
+        },
+        {
+          "id": "allo-affix",
+          "type": "affix",
+          "label": "all/o-",
+          "meaningEn": "other; different",
+          "meaningZh": "其他；不同",
+          "accent": "quaternary",
+          "icon": "别",
+          "origin": "来自希腊语 allos，表示 other。",
+          "why": "表示来自另一来源、不同个体或不同类型。",
+          "examples": [
+            {
+              "term": "allopathy",
+              "ipa": "/əˈlɑːpəθi/",
+              "breakdown": "all/o + -pathy",
+              "meaning": "对抗疗法",
+              "audioText": "allopathy"
+            },
+            {
+              "term": "allograft",
+              "ipa": "/ˈæloʊˌɡræft/",
+              "breakdown": "all/o + graft",
+              "meaning": "异体移植",
+              "audioText": "allograft"
+            },
+            {
+              "term": "allogeneic",
+              "ipa": "/ˌæloʊdʒəˈniːɪk/",
+              "breakdown": "all/o + genic",
+              "meaning": "同种异体的",
+              "audioText": "allogeneic"
+            },
+            {
+              "term": "alloplasty",
+              "ipa": "/ˈæloʊˌplæsti/",
+              "breakdown": "all/o + -plasty",
+              "meaning": "异种移植术",
+              "audioText": "alloplasty"
+            }
+          ]
+        },
+        {
+          "id": "ics-affix",
+          "type": "affix",
+          "label": "-ics",
+          "meaningEn": "the scientific study or use of sth.",
+          "meaningZh": "某学科；某领域应用",
+          "accent": "tertiary",
+          "icon": "学",
+          "origin": "来自希腊语 -ikos，表示 pertaining to 或 science of。",
+          "why": "用于学术学科、专业领域或研究体系名称。",
+          "examples": [
+            {
+              "term": "genetics",
+              "ipa": "/dʒəˈnetɪks/",
+              "breakdown": "gen/o + -ics",
+              "meaning": "遗传学",
+              "audioText": "genetics"
+            },
+            {
+              "term": "orthopedics",
+              "ipa": "/ˌɔːrθəˈpiːdɪks/",
+              "breakdown": "orth/o + ped/o + -ics",
+              "meaning": "骨科",
+              "audioText": "orthopedics"
+            },
+            {
+              "term": "pediatrics",
+              "ipa": "/ˌpiːdiˈætrɪks/",
+              "breakdown": "ped/o + -iatrics",
+              "meaning": "儿科学",
+              "audioText": "pediatrics"
+            },
+            {
+              "term": "acoustics",
+              "ipa": "/əˈkuːstɪks/",
+              "breakdown": "acoust/o + -ics",
+              "meaning": "声学",
+              "audioText": "acoustics"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "unit-7",

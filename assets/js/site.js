@@ -1,5 +1,6 @@
 (function () {
   const data = window.COURSE_DATA;
+  const finalPracticeData = window.FINAL_PRACTICE_DATA;
 
   if (!data || !Array.isArray(data.units)) {
     return;
@@ -21,6 +22,10 @@
 
   if (page === "flashcards") {
     initFlashcardsPage();
+  }
+
+  if (page === "final-practice") {
+    initFinalPracticePage();
   }
 
   function initHomePage() {
@@ -200,6 +205,703 @@
       setAnswerText(meaningNode, revealed ? card.meaning : "");
       revealButton.textContent = revealed ? "隐藏答案" : "显示答案";
     }
+  }
+
+  function initFinalPracticePage() {
+    if (!finalPracticeData) {
+      return;
+    }
+
+    const pageNode = document.getElementById("final-practice-page");
+    const answerSections = Array.from(document.querySelectorAll("[data-answer-section]"));
+    const showAllButton = document.getElementById("final-show-all");
+    const rootPool = buildMorphemePracticePool("root");
+    const affixPool = buildMorphemePracticePool("affix");
+    const termPool = buildDocumentMatchingPool();
+    const fillPool = finalPracticeData.fillBlanks || [];
+    const vocabularyPool = buildVocabularyPracticePool();
+    const fillAnswerPool = uniqueValues(fillPool.map((item) => item.answer));
+
+    document.getElementById("final-new-set").addEventListener("click", renderPracticeSet);
+    showAllButton.addEventListener("click", () => {
+      const shouldShow = !answerSections.every((section) => section.classList.contains("answers-visible"));
+      setAllAnswersVisible(shouldShow);
+    });
+
+    document.querySelectorAll("[data-toggle-section-answer]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const section = button.closest("[data-answer-section]");
+
+        if (!section) {
+          return;
+        }
+
+        const shouldShow = !section.classList.contains("answers-visible");
+        section.classList.toggle("answers-visible", shouldShow);
+        updateSectionAnswerButton(section);
+        updateAllAnswerButton();
+        updateResponseStates(section);
+      });
+    });
+
+    pageNode.addEventListener("change", (event) => {
+      const control = event.target.closest("[data-answer-control]");
+
+      if (!control) {
+        return;
+      }
+
+      updateAnswerCardState(control.closest("[data-answer-card]"));
+    });
+
+    renderPracticeSet();
+
+    function renderPracticeSet() {
+      const rootItems = sampleItems(rootPool, 20);
+      const affixItems = sampleItems(affixPool, 20);
+      const termItems = sampleItems(termPool, 10);
+      const fillItems = sampleItems(fillPool, 10);
+      const fillAnswers = uniqueValues(fillItems.map((item) => item.answer));
+      const fillDistractors = sampleItems(
+        fillAnswerPool.filter((answer) => !fillAnswers.includes(answer)),
+        3
+      );
+      const fillWordBank = shuffleItems([...fillAnswers, ...fillDistractors]);
+      const vocabularyItems = buildVocabularyQuestions(sampleItems(vocabularyPool, 10));
+      const translationItems = (finalPracticeData.sentenceTranslations || []).map((source) => {
+        const sentence = sampleItems(source.sentences || [], 1)[0];
+        return { source: source.source, title: source.title, sentence };
+      });
+      const shortAnswerItems = (finalPracticeData.shortAnswers || []).map((topic) => {
+        const question = sampleItems(topic.questions || [], 1)[0];
+        return { topic, question };
+      });
+
+      renderMatchingList(document.getElementById("root-match-list"), rootItems, "root");
+      renderMatchingList(document.getElementById("affix-match-list"), affixItems, "affix");
+      renderMatchingList(document.getElementById("term-match-list"), termItems, "term");
+      renderFillBlankList(fillItems, fillWordBank);
+      renderVocabularyList(vocabularyItems);
+      renderTranslationList(translationItems);
+      renderShortAnswerList(shortAnswerItems);
+      setAllAnswersVisible(false);
+    }
+
+    function renderMatchingList(container, items, prefix) {
+      const options = shuffleItems(items);
+
+      container.innerHTML = items
+        .map((item, index) => {
+          const selectId = prefix + "-match-" + index;
+
+          return [
+            '<article class="practice-card" data-answer-card>',
+            '<div class="practice-card-head">',
+            '<span class="question-number">',
+            index + 1,
+            "</span>",
+            "<div>",
+            '<p class="meta-label">',
+            escapeHtml(item.unit),
+            "</p>",
+            '<h3 class="card-title">',
+            escapeHtml(item.term),
+            "</h3>",
+            "</div>",
+            "</div>",
+            '<label class="field-label" for="',
+            selectId,
+            '">英文释义</label>',
+            '<select id="',
+            selectId,
+            '" data-answer-control data-answer="',
+            escapeHtml(item.key),
+            '">',
+            '<option value="">选择英文释义</option>',
+            options
+              .map((option) => {
+                return [
+                  '<option value="',
+                  escapeHtml(option.key),
+                  '">',
+                  escapeHtml(option.definition),
+                  "</option>"
+                ].join("");
+              })
+              .join(""),
+            "</select>",
+            '<div class="answer-reveal">',
+            '<span class="answer-label">答案</span>',
+            '<p class="answer-copy">',
+            escapeHtml(item.definition),
+            "</p>",
+            '<p class="answer-copy answer-zh">',
+            escapeHtml(item.meaningZh),
+            "</p>",
+            "</div>",
+            "</article>"
+          ].join("");
+        })
+        .join("");
+    }
+
+    function renderFillBlankList(items, wordBank) {
+      document.getElementById("fill-word-bank").innerHTML = wordBank
+        .map((word) => '<span class="meta-chip">' + escapeHtml(word) + "</span>")
+        .join("");
+
+      document.getElementById("fill-blank-list").innerHTML = items
+        .map((item, index) => {
+          const selectId = "fill-blank-" + index;
+
+          return [
+            '<article class="practice-card" data-answer-card>',
+            '<div class="practice-card-head">',
+            '<span class="question-number">',
+            index + 1,
+            "</span>",
+            "<div>",
+            '<p class="meta-label">',
+            escapeHtml(item.unit),
+            "</p>",
+            '<p class="question-text">',
+            formatBlankSentence(item.sentence),
+            "</p>",
+            "</div>",
+            "</div>",
+            '<label class="field-label" for="',
+            selectId,
+            '">选择单词</label>',
+            '<select id="',
+            selectId,
+            '" data-answer-control data-answer="',
+            escapeHtml(item.answer),
+            '">',
+            '<option value="">选择备选词</option>',
+            wordBank
+              .map((word) => {
+                return [
+                  '<option value="',
+                  escapeHtml(word),
+                  '">',
+                  escapeHtml(word),
+                  "</option>"
+                ].join("");
+              })
+              .join(""),
+            "</select>",
+            '<div class="answer-reveal">',
+            '<span class="answer-label">答案</span>',
+            '<p class="answer-copy">',
+            escapeHtml(item.answer),
+            "</p>",
+            "</div>",
+            "</article>"
+          ].join("");
+        })
+        .join("");
+    }
+
+    function renderVocabularyList(items) {
+      document.getElementById("vocabulary-list").innerHTML = items
+        .map((item, index) => {
+          const radioName = "vocabulary-" + index;
+
+          return [
+            '<article class="practice-card vocabulary-card" data-answer-card>',
+            '<div class="practice-card-head">',
+            '<span class="question-number">',
+            index + 1,
+            "</span>",
+            "<div>",
+            '<p class="meta-label">',
+            escapeHtml(item.unit),
+            "</p>",
+            '<h3 class="card-title">',
+            escapeHtml(item.term),
+            "</h3>",
+            '<p class="ipa-text">',
+            escapeHtml(item.breakdown),
+            "</p>",
+            "</div>",
+            "</div>",
+            '<div class="choice-list" role="radiogroup" aria-label="',
+            escapeHtml(item.term),
+            ' 的英文释义选项">',
+            item.options
+              .map((option) => {
+                return [
+                  '<label class="choice-option">',
+                  '<input type="radio" name="',
+                  radioName,
+                  '" value="',
+                  escapeHtml(option.key),
+                  '" data-answer-control data-answer="',
+                  escapeHtml(item.key),
+                  '" />',
+                  "<span>",
+                  escapeHtml(option.definition),
+                  "</span>",
+                  "</label>"
+                ].join("");
+              })
+              .join(""),
+            "</div>",
+            '<label class="field-label" for="vocabulary-zh-',
+            index,
+            '">中文含义</label>',
+            '<input id="vocabulary-zh-',
+            index,
+            '" class="text-input" type="text" placeholder="写出中文含义" />',
+            '<div class="answer-reveal">',
+            '<span class="answer-label">答案</span>',
+            '<p class="answer-copy">',
+            escapeHtml(item.definition),
+            "</p>",
+            '<p class="answer-copy answer-zh">',
+            escapeHtml(item.meaningZh),
+            "</p>",
+            "</div>",
+            "</article>"
+          ].join("");
+        })
+        .join("");
+    }
+
+    function renderTranslationList(items) {
+      document.getElementById("translation-list").innerHTML = items
+        .filter((item) => item.sentence)
+        .map((item, index) => {
+          return [
+            '<article class="practice-card translation-card">',
+            '<div class="practice-card-head">',
+            '<span class="question-number">',
+            index + 1,
+            "</span>",
+            "<div>",
+            '<p class="meta-label">',
+            escapeHtml(item.source),
+            "</p>",
+            '<h3 class="card-title">',
+            escapeHtml(item.title),
+            "</h3>",
+            "</div>",
+            "</div>",
+            '<p class="question-text question-text-en">',
+            escapeHtml(item.sentence.en),
+            "</p>",
+            '<textarea class="text-area" rows="4" placeholder="写出中文翻译"></textarea>',
+            '<div class="answer-reveal">',
+            '<span class="answer-label">参考译文</span>',
+            '<p class="answer-copy">',
+            escapeHtml(item.sentence.zh),
+            "</p>",
+            "</div>",
+            "</article>"
+          ].join("");
+        })
+        .join("");
+    }
+
+    function renderShortAnswerList(items) {
+      document.getElementById("short-answer-list").innerHTML = items
+        .filter((item) => item.question)
+        .map((item, index) => {
+          return [
+            '<article class="practice-card short-answer-card">',
+            '<div class="practice-card-head">',
+            '<span class="question-number">',
+            index + 1,
+            "</span>",
+            "<div>",
+            '<p class="meta-label">',
+            escapeHtml(item.topic.unit),
+            "</p>",
+            '<h3 class="card-title">',
+            escapeHtml(item.topic.title),
+            "</h3>",
+            "</div>",
+            "</div>",
+            '<div class="short-answer-layout">',
+            '<figure class="practice-figure">',
+            '<img src="',
+            escapeHtml(item.topic.image),
+            '" alt="',
+            escapeHtml(item.topic.title),
+            '" loading="lazy" />',
+            "</figure>",
+            '<div class="short-answer-workspace">',
+            '<p class="question-text question-text-en">',
+            escapeHtml(item.question.question),
+            "</p>",
+            '<textarea class="text-area" rows="5" placeholder="结合图片写出英文回答"></textarea>',
+            '<div class="answer-reveal">',
+            '<span class="answer-label">参考答案</span>',
+            '<p class="answer-copy">',
+            escapeHtml(item.question.answer),
+            "</p>",
+            "</div>",
+            "</div>",
+            "</div>",
+            "</article>"
+          ].join("");
+        })
+        .join("");
+    }
+
+    function buildVocabularyQuestions(items) {
+      return items.map((item) => {
+        const distractors = sampleItems(
+          vocabularyPool.filter((option) => option.key !== item.key && option.definition !== item.definition),
+          3
+        );
+
+        return {
+          ...item,
+          options: shuffleItems([item, ...distractors])
+        };
+      });
+    }
+
+    function setAllAnswersVisible(shouldShow) {
+      answerSections.forEach((section) => {
+        section.classList.toggle("answers-visible", shouldShow);
+        updateSectionAnswerButton(section);
+      });
+      updateAllAnswerButton();
+      updateResponseStates(pageNode);
+    }
+
+    function updateAllAnswerButton() {
+      const allVisible = answerSections.every((section) => section.classList.contains("answers-visible"));
+      showAllButton.textContent = allVisible ? "隐藏全部答案" : "显示全部答案";
+    }
+
+    function updateSectionAnswerButton(section) {
+      const button = section.querySelector("[data-toggle-section-answer]");
+
+      if (button) {
+        button.textContent = section.classList.contains("answers-visible") ? "隐藏本题型答案" : "显示本题型答案";
+      }
+    }
+  }
+
+  function buildMorphemePracticePool(type) {
+    const field = type === "root" ? "roots" : "affixes";
+
+    return getFinalPracticeUnits().flatMap((unit) => {
+      return (unit[field] || []).map((item) => ({
+        key: unit.id + "-" + item.id,
+        unit: unit.label,
+        term: item.label,
+        definition: item.meaningEn,
+        meaningZh: item.meaningZh
+      }));
+    });
+  }
+
+  function buildDocumentMatchingPool() {
+    return (finalPracticeData.matchingTerms || []).map((item) => ({
+      key: "document-" + slugify(item.term),
+      unit: item.unit,
+      term: item.term,
+      definition: item.definition,
+      meaningZh: item.meaningZh
+    }));
+  }
+
+  function buildVocabularyPracticePool() {
+    const lookup = buildMorphemeMeaningLookup();
+    const seen = new Set();
+
+    return getFinalPracticeUnits().flatMap((unit) => {
+      return getUnitMorphemes(unit).flatMap((morpheme) => {
+        return (morpheme.examples || []).flatMap((example) => {
+          const key = slugify(example.term);
+
+          if (!key || seen.has(key)) {
+            return [];
+          }
+
+          seen.add(key);
+
+          return [
+            {
+              key,
+              unit: unit.label,
+              term: example.term,
+              breakdown: example.breakdown,
+              meaningZh: example.meaning,
+              definition: buildVocabularyDefinition(example, morpheme, lookup)
+            }
+          ];
+        });
+      });
+    });
+  }
+
+  function buildMorphemeMeaningLookup() {
+    const lookup = {};
+
+    getFinalPracticeUnits().forEach((unit) => {
+      getUnitMorphemes(unit).forEach((morpheme) => {
+        String(morpheme.label)
+          .split(",")
+          .map((part) => part.trim())
+          .filter(Boolean)
+          .forEach((label) => {
+            lookup[normalizeMorphemeToken(label)] = morpheme.meaningEn;
+          });
+      });
+    });
+
+    return lookup;
+  }
+
+  function buildVocabularyDefinition(example, morpheme, lookup) {
+    const breakdown = String(example.breakdown || "").toLowerCase();
+    const target = formatMeaningList(collectCoreMorphemeMeanings(example.breakdown, morpheme, lookup));
+
+    if (breakdown.includes("-logist")) {
+      return "a specialist who studies or treats conditions involving " + target;
+    }
+
+    if (breakdown.includes("-logy")) {
+      return "the study of " + target;
+    }
+
+    if (breakdown.includes("-itis")) {
+      return "inflammation of " + target;
+    }
+
+    if (breakdown.includes("-ectomy")) {
+      return "surgical removal of " + target;
+    }
+
+    if (breakdown.includes("-otomy")) {
+      return "a surgical incision into " + target;
+    }
+
+    if (breakdown.includes("-plasty")) {
+      return "surgical repair or reshaping of " + target;
+    }
+
+    if (breakdown.includes("-graphy")) {
+      return "the process of recording or imaging " + target;
+    }
+
+    if (breakdown.includes("-gram")) {
+      return "a record or image of " + target;
+    }
+
+    if (breakdown.includes("-scopy")) {
+      return "visual examination of " + target;
+    }
+
+    if (breakdown.includes("-scope")) {
+      return "an instrument used to view " + target;
+    }
+
+    if (breakdown.includes("-metry")) {
+      return "measurement of " + target;
+    }
+
+    if (breakdown.includes("-meter")) {
+      return "an instrument used to measure " + target;
+    }
+
+    if (breakdown.includes("-megaly")) {
+      return "enlargement of " + target;
+    }
+
+    if (breakdown.includes("-oma")) {
+      return "a tumor or mass involving " + target;
+    }
+
+    if (breakdown.includes("-pathy")) {
+      return "a disease or disorder of " + target;
+    }
+
+    if (breakdown.includes("-algia")) {
+      return "pain involving " + target;
+    }
+
+    if (breakdown.includes("-osis")) {
+      return "an abnormal condition involving " + target;
+    }
+
+    if (breakdown.includes("-genesis")) {
+      return "the formation or production of " + target;
+    }
+
+    if (breakdown.includes("-cyte")) {
+      return "a cell related to " + target;
+    }
+
+    if (breakdown.includes("-blast")) {
+      return "an immature cell related to " + target;
+    }
+
+    if (breakdown.includes("-emia")) {
+      return "a blood condition involving " + target;
+    }
+
+    if (breakdown.includes("-uria")) {
+      return "a urinary condition involving " + target;
+    }
+
+    if (breakdown.includes("-therapy")) {
+      return "treatment involving " + target;
+    }
+
+    if (breakdown.includes("anti-")) {
+      return "something that works against " + target;
+    }
+
+    if (
+      breakdown.includes("-ary") ||
+      breakdown.includes("-ic") ||
+      breakdown.includes("-al") ||
+      breakdown.includes("-tic") ||
+      breakdown.includes("-ous")
+    ) {
+      return "pertaining to " + target;
+    }
+
+    return "a medical term related to " + target;
+  }
+
+  function collectCoreMorphemeMeanings(breakdown, morpheme, lookup) {
+    const meanings = String(breakdown || "")
+      .split("+")
+      .map((token) => token.trim())
+      .filter(Boolean)
+      .filter((token) => !token.startsWith("-") && !token.endsWith("-"))
+      .map((token) => lookup[normalizeMorphemeToken(token)])
+      .filter(Boolean);
+
+    if (!meanings.length && morpheme.meaningEn) {
+      meanings.push(morpheme.meaningEn);
+    }
+
+    return uniqueValues(meanings).slice(0, 3);
+  }
+
+  function normalizeMorphemeToken(token) {
+    return String(token).toLowerCase().replace(/\s+/g, "");
+  }
+
+  function formatMeaningList(meanings) {
+    const cleaned = uniqueValues(meanings.map(cleanMeaning).filter(Boolean));
+
+    if (!cleaned.length) {
+      return "the listed medical concept";
+    }
+
+    if (cleaned.length === 1) {
+      return cleaned[0];
+    }
+
+    if (cleaned.length === 2) {
+      return cleaned[0] + " and " + cleaned[1];
+    }
+
+    return cleaned.slice(0, -1).join(", ") + ", and " + cleaned[cleaned.length - 1];
+  }
+
+  function cleanMeaning(meaning) {
+    return String(meaning)
+      .replace(/\s*\([^)]*\)/g, "")
+      .split(";")[0]
+      .trim();
+  }
+
+  function formatBlankSentence(sentence) {
+    return escapeHtml(sentence).replace(/_{4,}/g, '<span class="blank-slot">__________</span>');
+  }
+
+  function updateResponseStates(root) {
+    root.querySelectorAll("[data-answer-card]").forEach(updateAnswerCardState);
+  }
+
+  function updateAnswerCardState(card) {
+    if (!card) {
+      return;
+    }
+
+    const isVisible = Boolean(card.closest(".answers-visible"));
+    const controls = Array.from(card.querySelectorAll("[data-answer-control]"));
+
+    card.classList.remove("is-correct", "is-incorrect");
+    card.querySelectorAll(".choice-option").forEach((option) => {
+      option.classList.remove("is-correct-choice", "is-selected-incorrect");
+    });
+
+    if (!isVisible || !controls.length) {
+      return;
+    }
+
+    const correctValue = controls[0].dataset.answer;
+    const selectedControl =
+      controls[0].type === "radio" ? controls.find((control) => control.checked) : controls[0];
+
+    if (!selectedControl || !selectedControl.value) {
+      return;
+    }
+
+    const isCorrect = selectedControl.value === correctValue;
+    card.classList.toggle("is-correct", isCorrect);
+    card.classList.toggle("is-incorrect", !isCorrect);
+
+    if (controls[0].type === "radio") {
+      controls.forEach((control) => {
+        const option = control.closest(".choice-option");
+
+        if (!option) {
+          return;
+        }
+
+        option.classList.toggle("is-correct-choice", control.value === correctValue);
+        option.classList.toggle("is-selected-incorrect", control.checked && control.value !== correctValue);
+      });
+    }
+  }
+
+  function sampleItems(items, count) {
+    return shuffleItems(items).slice(0, Math.min(count, items.length));
+  }
+
+  function shuffleItems(items) {
+    const shuffled = items.filter(Boolean).slice();
+
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      const current = shuffled[index];
+      shuffled[index] = shuffled[swapIndex];
+      shuffled[swapIndex] = current;
+    }
+
+    return shuffled;
+  }
+
+  function uniqueValues(values) {
+    return Array.from(new Set(values.filter(Boolean)));
+  }
+
+  function getFinalPracticeUnits() {
+    return getReadyUnits().slice(0, 6);
+  }
+
+  function escapeHtml(value) {
+    return String(value || "").replace(/[&<>"']/g, (character) => {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[character];
+    });
   }
 
   function handleAudioClick(event) {

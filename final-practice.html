@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>期末练习 | 医学英语学习站</title>
+    <meta
+      name="description"
+      content="医学英语期末练习页面，按题型随机生成词根词缀匹配、连线、选词填空、单词理解、句子翻译与简答题。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Noto+Serif+SC:wght@700;800&amp;family=Outfit:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="final-practice">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-brand" href="index.html">
+          <span class="site-brand-mark">ME</span>
+          <span class="site-brand-text">医学英语学习站</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="unit.html?unit=unit-1">单元学习</a>
+          <a href="flashcards.html?unit=unit-1">抽认卡</a>
+          <a class="is-current" href="final-practice.html">期末练习</a>
+        </nav>
+      </header>
+
+      <main class="page-main" id="final-practice-page">
+        <div class="breadcrumb">
+          <a href="index.html">首页</a>
+          <span>/</span>
+          <span>期末练习</span>
+        </div>
+
+        <section class="page-hero page-hero-compact final-hero">
+          <p class="page-kicker">Final Practice</p>
+          <h1 class="page-title">期末练习</h1>
+          <p class="page-lead">
+            按题型随机抽取期末复习题，所有答案可一键显示或隐藏。
+          </p>
+          <div class="hero-actions">
+            <button class="button button-primary" id="final-new-set" type="button">重新抽题</button>
+            <button class="button button-secondary" id="final-show-all" type="button">显示全部答案</button>
+          </div>
+        </section>
+
+        <section class="section-panel final-nav-panel" aria-label="题型导航">
+          <div class="final-nav-list">
+            <a class="unit-switcher-chip" href="#morpheme-practice">词根词缀</a>
+            <a class="unit-switcher-chip" href="#term-matching-practice">连线题</a>
+            <a class="unit-switcher-chip" href="#fill-blank-practice">选词填空</a>
+            <a class="unit-switcher-chip" href="#vocabulary-practice">单词理解</a>
+            <a class="unit-switcher-chip" href="#cloze-practice">文章挖空</a>
+            <a class="unit-switcher-chip" href="#translation-practice">句子翻译</a>
+            <a class="unit-switcher-chip" href="#short-answer-practice">简答题</a>
+          </div>
+        </section>
+
+        <section class="section-panel final-section" id="morpheme-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 1</p>
+              <h2 class="section-title">词根词缀匹配</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+
+          <div class="final-subsection-stack">
+            <article class="final-subsection">
+              <div class="final-subsection-head">
+                <div>
+                  <p class="section-kicker">Roots</p>
+                  <h3 class="card-title">词根匹配（20题）</h3>
+                </div>
+                <p class="section-desc">从前六个单元词根中随机抽取。</p>
+              </div>
+              <div class="match-list" id="root-match-list"></div>
+            </article>
+
+            <article class="final-subsection">
+              <div class="final-subsection-head">
+                <div>
+                  <p class="section-kicker">Affixes</p>
+                  <h3 class="card-title">词缀匹配（20题）</h3>
+                </div>
+                <p class="section-desc">从前六个单元词缀中随机抽取。</p>
+              </div>
+              <div class="match-list" id="affix-match-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-panel final-section" id="term-matching-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 2</p>
+              <h2 class="section-title">连线题</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+          <div class="match-list" id="term-match-list"></div>
+        </section>
+
+        <section class="section-panel final-section" id="fill-blank-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 3</p>
+              <h2 class="section-title">选词填空</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+          <div class="word-bank" id="fill-word-bank"></div>
+          <div class="question-list" id="fill-blank-list"></div>
+        </section>
+
+        <section class="section-panel final-section" id="vocabulary-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 4</p>
+              <h2 class="section-title">单词理解及中文翻译</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+          <div class="question-list" id="vocabulary-list"></div>
+        </section>
+
+        <section class="section-panel final-section is-pending" id="cloze-practice">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 5</p>
+              <h2 class="section-title">文章挖空</h2>
+            </div>
+            <span class="meta-chip">待补充</span>
+          </div>
+          <p class="section-desc">本题型暂时略过，后续补充后会加入同一套随机抽题与答案显示。</p>
+        </section>
+
+        <section class="section-panel final-section" id="translation-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 6</p>
+              <h2 class="section-title">句子翻译</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+          <div class="question-list" id="translation-list"></div>
+        </section>
+
+        <section class="section-panel final-section" id="short-answer-practice" data-answer-section>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Type 7</p>
+              <h2 class="section-title">简答题</h2>
+            </div>
+            <button class="button button-secondary" type="button" data-toggle-section-answer>显示本题型答案</button>
+          </div>
+          <div class="short-answer-list" id="short-answer-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/data/course-data.js"></script>
+    <script src="assets/data/final-practice-data.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

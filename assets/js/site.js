@@ -221,6 +221,12 @@
     const fillPool = finalPracticeData.fillBlanks || [];
     const vocabularyPool = buildVocabularyPracticePool();
     const fillAnswerPool = uniqueValues(fillPool.map((item) => item.answer));
+    const dragBoards = new Map();
+    let selectedDragToken = null;
+    let pointerDrag = null;
+    let dragGhost = null;
+    let highlightedDropTarget = null;
+    let suppressTokenClickUntil = 0;
 
     document.getElementById("final-new-set").addEventListener("click", renderPracticeSet);
     showAllButton.addEventListener("click", () => {
@@ -254,9 +260,23 @@
       updateAnswerCardState(control.closest("[data-answer-card]"));
     });
 
+    pageNode.addEventListener("dragstart", handleDragStart);
+    pageNode.addEventListener("dragend", handleDragEnd);
+    pageNode.addEventListener("dragover", handleDragOver);
+    pageNode.addEventListener("dragleave", handleDragLeave);
+    pageNode.addEventListener("drop", handleDrop);
+    pageNode.addEventListener("click", handleDragBoardClick);
+    pageNode.addEventListener("keydown", handleDragBoardKeydown);
+    pageNode.addEventListener("pointerdown", handlePointerDown);
+    pageNode.addEventListener("pointermove", handlePointerMove);
+    pageNode.addEventListener("pointerup", handlePointerUp);
+    pageNode.addEventListener("pointercancel", handlePointerCancel);
+
     renderPracticeSet();
 
     function renderPracticeSet() {
+      dragBoards.clear();
+      selectedDragToken = null;
       const rootItems = sampleItems(rootPool, 20);
       const affixItems = sampleItems(affixPool, 20);
       const termItems = sampleItems(termPool, 10);
@@ -288,118 +308,594 @@
     }
 
     function renderMatchingList(container, items, prefix) {
-      const options = shuffleItems(items);
+      const board = {
+        id: prefix,
+        type: "matching",
+        container,
+        items,
+        options: shuffleItems(items),
+        assignments: new Map()
+      };
 
-      container.innerHTML = items
-        .map((item, index) => {
-          const selectId = prefix + "-match-" + index;
-
-          return [
-            '<article class="practice-card" data-answer-card>',
-            '<div class="practice-card-head">',
-            '<span class="question-number">',
-            index + 1,
-            "</span>",
-            "<div>",
-            '<p class="meta-label">',
-            escapeHtml(item.unit),
-            "</p>",
-            '<h3 class="card-title">',
-            escapeHtml(item.term),
-            "</h3>",
-            "</div>",
-            "</div>",
-            '<label class="field-label" for="',
-            selectId,
-            '">英文释义</label>',
-            '<select id="',
-            selectId,
-            '" data-answer-control data-answer="',
-            escapeHtml(item.key),
-            '">',
-            '<option value="">选择英文释义</option>',
-            options
-              .map((option) => {
-                return [
-                  '<option value="',
-                  escapeHtml(option.key),
-                  '">',
-                  escapeHtml(option.definition),
-                  "</option>"
-                ].join("");
-              })
-              .join(""),
-            "</select>",
-            '<div class="answer-reveal">',
-            '<span class="answer-label">答案</span>',
-            '<p class="answer-copy">',
-            escapeHtml(item.definition),
-            "</p>",
-            '<p class="answer-copy answer-zh">',
-            escapeHtml(item.meaningZh),
-            "</p>",
-            "</div>",
-            "</article>"
-          ].join("");
-        })
-        .join("");
+      board.render = () => renderMatchingBoard(board);
+      dragBoards.set(board.id, board);
+      board.render();
     }
 
     function renderFillBlankList(items, wordBank) {
-      document.getElementById("fill-word-bank").innerHTML = wordBank
-        .map((word) => '<span class="meta-chip">' + escapeHtml(word) + "</span>")
-        .join("");
+      const board = {
+        id: "fill",
+        type: "fill",
+        bankContainer: document.getElementById("fill-word-bank"),
+        questionContainer: document.getElementById("fill-blank-list"),
+        items: items.map((item, index) => ({
+          ...item,
+          key: "fill-question-" + index
+        })),
+        options: wordBank.map((word) => ({
+          key: word,
+          definition: word
+        })),
+        assignments: new Map()
+      };
 
-      document.getElementById("fill-blank-list").innerHTML = items
+      board.render = () => renderFillBoard(board);
+      dragBoards.set(board.id, board);
+      board.render();
+    }
+
+    function renderMatchingBoard(board) {
+      const usedValues = new Set(board.assignments.values());
+      const availableOptions = board.options.filter((option) => !usedValues.has(option.key));
+
+      board.container.classList.add("drag-match-workspace");
+      board.container.innerHTML = [
+        '<div class="drag-question-column">',
+        '<h3 class="drag-column-title">题目区</h3>',
+        '<div class="drag-question-list">',
+        board.items
+          .map((item, index) => {
+            const selectedValue = board.assignments.get(item.key) || "";
+            const selectedOption = board.options.find((option) => option.key === selectedValue);
+
+            return buildDragQuestionCard({
+              board,
+              item,
+              index,
+              correctAnswer: item.key,
+              selectedValue,
+              selectedLabel: selectedOption ? selectedOption.definition : "",
+              questionContent: [
+                '<p class="meta-label">',
+                escapeHtml(item.unit),
+                "</p>",
+                '<h3 class="card-title">',
+                escapeHtml(item.term),
+                "</h3>"
+              ].join(""),
+              answerContent: [
+                '<p class="answer-copy">',
+                escapeHtml(item.definition),
+                "</p>",
+                '<p class="answer-copy answer-zh">',
+                escapeHtml(item.meaningZh),
+                "</p>"
+              ].join("")
+            });
+          })
+          .join(""),
+        "</div>",
+        "</div>",
+        buildAnswerBank(board, availableOptions),
+        ""
+      ].join("");
+
+      updateResponseStates(board.container);
+    }
+
+    function renderFillBoard(board) {
+      const usedValues = new Set(board.assignments.values());
+      const availableOptions = board.options.filter((option) => !usedValues.has(option.key));
+
+      board.questionContainer.innerHTML = board.items
         .map((item, index) => {
-          const selectId = "fill-blank-" + index;
+          const selectedValue = board.assignments.get(item.key) || "";
 
-          return [
-            '<article class="practice-card" data-answer-card>',
-            '<div class="practice-card-head">',
-            '<span class="question-number">',
-            index + 1,
-            "</span>",
-            "<div>",
-            '<p class="meta-label">',
-            escapeHtml(item.unit),
-            "</p>",
-            '<p class="question-text">',
-            formatBlankSentence(item.sentence),
-            "</p>",
-            "</div>",
-            "</div>",
-            '<label class="field-label" for="',
-            selectId,
-            '">选择单词</label>',
-            '<select id="',
-            selectId,
-            '" data-answer-control data-answer="',
-            escapeHtml(item.answer),
-            '">',
-            '<option value="">选择备选词</option>',
-            wordBank
-              .map((word) => {
-                return [
-                  '<option value="',
-                  escapeHtml(word),
-                  '">',
-                  escapeHtml(word),
-                  "</option>"
-                ].join("");
-              })
-              .join(""),
-            "</select>",
-            '<div class="answer-reveal">',
-            '<span class="answer-label">答案</span>',
-            '<p class="answer-copy">',
-            escapeHtml(item.answer),
-            "</p>",
-            "</div>",
-            "</article>"
-          ].join("");
+          return buildDragQuestionCard({
+            board,
+            item,
+            index,
+            correctAnswer: item.answer,
+            selectedValue,
+            selectedLabel: selectedValue,
+            questionContent: [
+              '<p class="meta-label">',
+              escapeHtml(item.unit),
+              "</p>",
+              '<p class="question-text">',
+              formatBlankSentence(item.sentence),
+              "</p>"
+            ].join(""),
+            answerContent: '<p class="answer-copy">' + escapeHtml(item.answer) + "</p>"
+          });
         })
         .join("");
+
+      board.bankContainer.outerHTML = buildAnswerBank(board, availableOptions, "fill-word-bank");
+      board.bankContainer = document.getElementById("fill-word-bank");
+      updateResponseStates(board.questionContainer);
+    }
+
+    function buildDragQuestionCard(config) {
+      const {
+        board,
+        item,
+        index,
+        correctAnswer,
+        selectedValue,
+        selectedLabel,
+        questionContent,
+        answerContent
+      } = config;
+
+      return [
+        '<article class="practice-card drag-question-card" data-answer-card data-answer="',
+        escapeHtml(correctAnswer),
+        '" data-selected-answer="',
+        escapeHtml(selectedValue),
+        '">',
+        '<div class="practice-card-head">',
+        '<span class="question-number">',
+        index + 1,
+        "</span>",
+        "<div>",
+        questionContent,
+        "</div>",
+        "</div>",
+        '<div class="drop-zone',
+        selectedValue ? " has-answer" : "",
+        '" role="button" tabindex="0" data-drop-zone data-board="',
+        escapeHtml(board.id),
+        '" data-question-key="',
+        escapeHtml(item.key),
+        '" aria-label="',
+        selectedValue ? "已匹配答案：" + escapeHtml(selectedLabel) : "放置答案",
+        '">',
+        selectedValue
+          ? [
+              '<span class="answer-token is-assigned',
+              isSelectedToken(board.id, selectedValue) ? " is-selected" : "",
+              '" role="button" tabindex="0" data-drag-token data-board="',
+              escapeHtml(board.id),
+              '" data-value="',
+              escapeHtml(selectedValue),
+              '">',
+              escapeHtml(selectedLabel),
+              "</span>",
+              '<button class="clear-assignment" type="button" data-clear-assignment data-board="',
+              escapeHtml(board.id),
+              '" data-question-key="',
+              escapeHtml(item.key),
+              '" aria-label="清除当前答案">×</button>'
+            ].join("")
+          : '<span class="drop-placeholder">拖入答案</span>',
+        "</div>",
+        '<div class="answer-reveal">',
+        '<span class="answer-label">答案</span>',
+        answerContent,
+        "</div>",
+        "</article>"
+      ].join("");
+    }
+
+    function buildAnswerBank(board, options, id) {
+      return [
+        '<aside class="answer-bank" ',
+        id ? 'id="' + escapeHtml(id) + '" ' : "",
+        'data-answer-bank data-board="',
+        escapeHtml(board.id),
+        '">',
+        '<div class="answer-bank-head">',
+        '<h3 class="drag-column-title">答案区</h3>',
+        '<span class="meta-chip">剩余 ',
+        options.length,
+        "</span>",
+        "</div>",
+        '<div class="answer-token-list">',
+        options.length
+          ? options
+              .map((option) => {
+                return [
+                  '<span class="answer-token',
+                  isSelectedToken(board.id, option.key) ? " is-selected" : "",
+                  '" role="button" tabindex="0" data-drag-token data-board="',
+                  escapeHtml(board.id),
+                  '" data-value="',
+                  escapeHtml(option.key),
+                  '">',
+                  escapeHtml(option.definition),
+                  "</span>"
+                ].join("");
+              })
+              .join("")
+          : '<p class="bank-empty">答案均已使用</p>',
+        "</div>",
+        "</aside>"
+      ].join("");
+    }
+
+    function handleDragStart(event) {
+      const token = event.target.closest("[data-drag-token]");
+
+      if (!token || !event.dataTransfer) {
+        return;
+      }
+
+      const payload = {
+        boardId: token.dataset.board,
+        value: token.dataset.value
+      };
+
+      selectedDragToken = payload;
+      token.classList.add("is-dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", JSON.stringify(payload));
+    }
+
+    function handleDragEnd(event) {
+      const token = event.target.closest("[data-drag-token]");
+
+      if (token) {
+        token.classList.remove("is-dragging");
+      }
+
+      clearDragHighlights();
+    }
+
+    function handleDragOver(event) {
+      const target = event.target.closest("[data-drop-zone], [data-answer-bank]");
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      target.classList.add("is-drag-over");
+
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = "move";
+      }
+    }
+
+    function handleDragLeave(event) {
+      const target = event.target.closest("[data-drop-zone], [data-answer-bank]");
+
+      if (target && !target.contains(event.relatedTarget)) {
+        target.classList.remove("is-drag-over");
+      }
+    }
+
+    function handleDrop(event) {
+      const target = event.target.closest("[data-drop-zone], [data-answer-bank]");
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      const payload = readDragPayload(event);
+
+      if (!payload || payload.boardId !== target.dataset.board) {
+        clearDragHighlights();
+        return;
+      }
+
+      const board = dragBoards.get(payload.boardId);
+
+      if (!board) {
+        return;
+      }
+
+      if (target.matches("[data-drop-zone]")) {
+        assignBoardValue(board, target.dataset.questionKey, payload.value);
+      } else {
+        removeBoardValue(board, payload.value);
+      }
+
+      selectedDragToken = null;
+      clearDragHighlights();
+      board.render();
+    }
+
+    function handleDragBoardClick(event) {
+      const clearButton = event.target.closest("[data-clear-assignment]");
+
+      if (clearButton) {
+        const board = dragBoards.get(clearButton.dataset.board);
+
+        if (board) {
+          board.assignments.delete(clearButton.dataset.questionKey);
+          selectedDragToken = null;
+          board.render();
+        }
+        return;
+      }
+
+      const token = event.target.closest("[data-drag-token]");
+
+      if (token) {
+        if (Date.now() < suppressTokenClickUntil) {
+          return;
+        }
+
+        const nextToken = {
+          boardId: token.dataset.board,
+          value: token.dataset.value
+        };
+
+        selectedDragToken =
+          selectedDragToken &&
+          selectedDragToken.boardId === nextToken.boardId &&
+          selectedDragToken.value === nextToken.value
+            ? null
+            : nextToken;
+
+        const board = dragBoards.get(nextToken.boardId);
+
+        if (board) {
+          board.render();
+        }
+        return;
+      }
+
+      const dropZone = event.target.closest("[data-drop-zone]");
+
+      if (dropZone && selectedDragToken && selectedDragToken.boardId === dropZone.dataset.board) {
+        const board = dragBoards.get(selectedDragToken.boardId);
+
+        if (board) {
+          assignBoardValue(board, dropZone.dataset.questionKey, selectedDragToken.value);
+          selectedDragToken = null;
+          board.render();
+        }
+        return;
+      }
+
+      const answerBank = event.target.closest("[data-answer-bank]");
+
+      if (answerBank && selectedDragToken && selectedDragToken.boardId === answerBank.dataset.board) {
+        const board = dragBoards.get(selectedDragToken.boardId);
+
+        if (board) {
+          removeBoardValue(board, selectedDragToken.value);
+          selectedDragToken = null;
+          board.render();
+        }
+      }
+    }
+
+    function handlePointerDown(event) {
+      const token = event.target.closest("[data-drag-token]");
+
+      if (!token || event.button !== 0) {
+        return;
+      }
+
+      pointerDrag = {
+        boardId: token.dataset.board,
+        value: token.dataset.value,
+        token,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        active: false
+      };
+
+      if (token.setPointerCapture) {
+        token.setPointerCapture(event.pointerId);
+      }
+    }
+
+    function handlePointerMove(event) {
+      if (!pointerDrag || pointerDrag.pointerId !== event.pointerId) {
+        return;
+      }
+
+      const distance = Math.hypot(event.clientX - pointerDrag.startX, event.clientY - pointerDrag.startY);
+
+      if (!pointerDrag.active && distance < 6) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (!pointerDrag.active) {
+        pointerDrag.active = true;
+        pointerDrag.token.classList.add("is-dragging");
+        dragGhost = pointerDrag.token.cloneNode(true);
+        dragGhost.classList.add("drag-ghost");
+        dragGhost.removeAttribute("data-drag-token");
+        dragGhost.removeAttribute("tabindex");
+        document.body.appendChild(dragGhost);
+      }
+
+      dragGhost.style.left = event.clientX + 14 + "px";
+      dragGhost.style.top = event.clientY + 14 + "px";
+      updatePointerDropTarget(event.clientX, event.clientY);
+    }
+
+    function handlePointerUp(event) {
+      if (!pointerDrag || pointerDrag.pointerId !== event.pointerId) {
+        return;
+      }
+
+      if (!pointerDrag.active) {
+        pointerDrag = null;
+        return;
+      }
+
+      event.preventDefault();
+      const target = getPointerDropTarget(event.clientX, event.clientY);
+      const board = dragBoards.get(pointerDrag.boardId);
+
+      if (target && board && target.dataset.board === pointerDrag.boardId) {
+        if (target.matches("[data-drop-zone]")) {
+          assignBoardValue(board, target.dataset.questionKey, pointerDrag.value);
+        } else {
+          removeBoardValue(board, pointerDrag.value);
+        }
+      }
+
+      selectedDragToken = null;
+      suppressTokenClickUntil = Date.now() + 300;
+      cleanupPointerDrag();
+
+      if (board) {
+        board.render();
+      }
+    }
+
+    function handlePointerCancel() {
+      cleanupPointerDrag();
+    }
+
+    function updatePointerDropTarget(x, y) {
+      const nextTarget = getPointerDropTarget(x, y);
+
+      if (highlightedDropTarget === nextTarget) {
+        return;
+      }
+
+      if (highlightedDropTarget) {
+        highlightedDropTarget.classList.remove("is-drag-over");
+      }
+
+      highlightedDropTarget = nextTarget;
+
+      if (highlightedDropTarget) {
+        highlightedDropTarget.classList.add("is-drag-over");
+      }
+    }
+
+    function getPointerDropTarget(x, y) {
+      const target = document.elementFromPoint(x, y);
+      const dropTarget = target ? target.closest("[data-drop-zone], [data-answer-bank]") : null;
+
+      if (!dropTarget || !pointerDrag || dropTarget.dataset.board !== pointerDrag.boardId) {
+        return null;
+      }
+
+      return dropTarget;
+    }
+
+    function cleanupPointerDrag() {
+      if (pointerDrag && pointerDrag.token) {
+        pointerDrag.token.classList.remove("is-dragging");
+      }
+
+      if (dragGhost) {
+        dragGhost.remove();
+      }
+
+      if (highlightedDropTarget) {
+        highlightedDropTarget.classList.remove("is-drag-over");
+      }
+
+      pointerDrag = null;
+      dragGhost = null;
+      highlightedDropTarget = null;
+    }
+
+    function handleDragBoardKeydown(event) {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      const token = event.target.closest("[data-drag-token]");
+
+      if (token) {
+        event.preventDefault();
+        const nextToken = {
+          boardId: token.dataset.board,
+          value: token.dataset.value
+        };
+
+        selectedDragToken =
+          selectedDragToken &&
+          selectedDragToken.boardId === nextToken.boardId &&
+          selectedDragToken.value === nextToken.value
+            ? null
+            : nextToken;
+
+        const tokenBoard = dragBoards.get(nextToken.boardId);
+
+        if (tokenBoard) {
+          tokenBoard.render();
+        }
+        return;
+      }
+
+      const dropZone = event.target.closest("[data-drop-zone]");
+
+      if (!dropZone || !selectedDragToken || selectedDragToken.boardId !== dropZone.dataset.board) {
+        return;
+      }
+
+      event.preventDefault();
+      const board = dragBoards.get(selectedDragToken.boardId);
+
+      if (board) {
+        assignBoardValue(board, dropZone.dataset.questionKey, selectedDragToken.value);
+        selectedDragToken = null;
+        board.render();
+      }
+    }
+
+    function assignBoardValue(board, questionKey, value) {
+      board.assignments.forEach((assignedValue, assignedQuestion) => {
+        if (assignedValue === value && assignedQuestion !== questionKey) {
+          board.assignments.delete(assignedQuestion);
+        }
+      });
+      board.assignments.set(questionKey, value);
+    }
+
+    function removeBoardValue(board, value) {
+      board.assignments.forEach((assignedValue, questionKey) => {
+        if (assignedValue === value) {
+          board.assignments.delete(questionKey);
+        }
+      });
+    }
+
+    function isSelectedToken(boardId, value) {
+      return Boolean(
+        selectedDragToken &&
+          selectedDragToken.boardId === boardId &&
+          selectedDragToken.value === value
+      );
+    }
+
+    function readDragPayload(event) {
+      if (event.dataTransfer) {
+        const rawPayload = event.dataTransfer.getData("text/plain");
+
+        if (rawPayload) {
+          try {
+            return JSON.parse(rawPayload);
+          } catch (error) {
+            return selectedDragToken;
+          }
+        }
+      }
+
+      return selectedDragToken;
+    }
+
+    function clearDragHighlights() {
+      pageNode.querySelectorAll(".is-drag-over").forEach((node) => {
+        node.classList.remove("is-drag-over");
+      });
     }
 
     function renderVocabularyList(items) {
@@ -837,7 +1333,24 @@
       option.classList.remove("is-correct-choice", "is-selected-incorrect");
     });
 
-    if (!isVisible || !controls.length) {
+    if (!isVisible) {
+      return;
+    }
+
+    if (card.hasAttribute("data-selected-answer")) {
+      const selectedValue = card.dataset.selectedAnswer;
+
+      if (!selectedValue) {
+        return;
+      }
+
+      const isCorrect = selectedValue === card.dataset.answer;
+      card.classList.toggle("is-correct", isCorrect);
+      card.classList.toggle("is-incorrect", !isCorrect);
+      return;
+    }
+
+    if (!controls.length) {
       return;
     }
 
